@@ -10,6 +10,9 @@ const SignupPage = () => {
          <S.Content>
             <Header text='Reservattio'/>
             <SignupForm />
+            <S.StyledLink to='/auth/login'>
+               Already have an account? Log in.
+            </S.StyledLink>
          </S.Content>
       </S.Wrapper>
    );

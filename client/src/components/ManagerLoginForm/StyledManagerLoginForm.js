@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {ErrorMessage} from 'formik';
-import { Form, Input } from 'formik-antd'
+import { Input } from 'formik-antd'
 import {Link} from 'react-router-dom';
 
 import colors from '../../assets/colors';
@@ -9,11 +9,6 @@ export const Wrapper = styled.div`
    width: 85%;
    height: 100%;
    margin: 25px auto 20px auto;
-`
-
-export const StyledForm = styled(Form)`
-   width: 100%;
-   font-family: segoe;
 `
 
 export const FieldWrapper = styled.div`

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {ErrorMessage} from 'formik';
 import { Input } from 'formik-antd'
+
 import colors from '../../assets/colors';
 
 export const Wrapper = styled.div`
@@ -11,8 +12,7 @@ export const Wrapper = styled.div`
 
 export const FieldWrapper = styled.div`
    width: 100%;
-   min-height: 60px;
-   height: 100%;
+   height: 60px;
    margin-bottom: 8px;
    color: rgba(0,0,0,0.65);
 
@@ -25,14 +25,6 @@ export const StyledInput = styled(Input)`
 `
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-   margin-right: auto;
-   margin-left: 5px;
-   font-family: 'segoe';
-   font-size: 14px;
-   color: ${colors.redColor};
-`
-
-export const Error = styled.p`
    margin-right: auto;
    margin-left: 5px;
    font-family: 'segoe';

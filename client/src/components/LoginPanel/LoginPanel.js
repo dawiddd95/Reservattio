@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Button } from 'antd';
 
 import * as S from './StyledLoginPanel';
 import ManagerLoginForm from '../ManagerLoginForm/ManagerLoginForm';

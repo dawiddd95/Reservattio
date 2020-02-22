@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import background from '../../assets/img/signup.jpg';
+import background from '../../assets/img/forgot.png';
 import colors from '../../assets/colors';
 
 export const Wrapper = styled.div`
@@ -30,8 +30,9 @@ export const Content = styled.div`
 `
 
 export const StyledLink = styled(Link)`
-   margin: 20px auto 0 auto;
+   margin: 0 auto;
    color: ${colors.primary};
+   text-align: center;
    font-size: 16px;
    font-family: segoe;
    text-decoration: none;

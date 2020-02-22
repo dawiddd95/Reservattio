@@ -1,8 +1,7 @@
 import React from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { Form, Input, InputNumber, Checkbox, SubmitButton } from 'formik-antd'
-//import Checkbox from '@material-ui/core/Checkbox';
+import { Form, Checkbox, SubmitButton } from 'formik-antd'
 import * as S from './StyledManagerLoginForm';
 
 

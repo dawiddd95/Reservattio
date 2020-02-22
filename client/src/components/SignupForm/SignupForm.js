@@ -1,7 +1,7 @@
 import React from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { Form, Input, InputNumber, Checkbox, SubmitButton } from 'formik-antd'
+import { Form, SubmitButton } from 'formik-antd'
 import * as S from './StyledSignupForm';
 
 const SignupForm = () => {
@@ -70,7 +70,7 @@ const SignupForm = () => {
                      />
                   </S.FieldWrapper>
                   <S.FieldWrapper>
-                     <Input 
+                     <S.StyledInput 
                         //onInput={handleOnInput}
                         name='email' 
                         type='text' 
@@ -79,7 +79,7 @@ const SignupForm = () => {
                      {/* <S.Error>{error}</S.Error> */}
                   </S.FieldWrapper>
                   <S.FieldWrapper>
-                     <Input 
+                     <S.StyledInput 
                         name='password' 
                         type='password' 
                         placeholder='Password' 
@@ -90,7 +90,7 @@ const SignupForm = () => {
                      />
                   </S.FieldWrapper>
                   <S.FieldWrapper>
-                     <Input 
+                     <S.StyledInput 
                         name='confirmPassword' 
                         type='password' 
                         placeholder='Confirm password' 
@@ -100,20 +100,9 @@ const SignupForm = () => {
                         component='p' 
                      />
                   </S.FieldWrapper>        
-                  {/* <S.Button type='submit' disabled={loading}>
+                  <SubmitButton block >
                      Sign up
-                     {loading && <WaitingSmallSpinner />}
-                  </S.Button> */}
-
-
-
-
-                  {/* Ten link nie moze tutaj byc */}
-                  {/* <S.LinkWrapper>
-                     <S.StyledLink to='/auth/login'>
-                        Already have an account? Log in.
-                     </S.StyledLink>
-                  </S.LinkWrapper> */}
+                  </SubmitButton>
                </Form>
             </S.Wrapper>
          )}
