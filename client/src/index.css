@@ -11,3 +11,55 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+ width: 6px;
+ height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+ background: #F5222D;
+ border: 0px none #ffffff;
+ border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+ background: #666666;
+ border: 0px none #ffffff;
+ border-radius: 50px;
+}
+::-webkit-scrollbar-corner {
+ background: transparent;
+}
+
+
+@font-face {
+  font-family: 'nobel';
+  src: url('./assets/fonts/nobel.otf');
+}
+
+@font-face {
+  font-family: 'segoeBold';
+  src: url('./assets/fonts/segoeBold.ttf');
+}
+
+@font-face {
+  font-family: 'segoe';
+  src: url('./assets/fonts/segoe-ui.ttf');
+}
+
+::-webkit-scrollbar-track {
+  width: 14px;
+  background: #f1f1f1; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #f26876; }
