@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import * as S from './StyledLoginPanel';
 import ManagerLoginForm from '../ManagerLoginForm/ManagerLoginForm';
+import EmployeeLoginForm from '../EmployeeLoginForm/EmployeeLoginForm';
+
 
 const useLoginType = () => {
    const [loginAs, setLoginAs] = React.useState('manager');
@@ -32,8 +34,7 @@ const LoginPanel = () => {
                Employee
             </S.LoginAsButton>
          </S.LoginAsWrapper>
-
-         {loginAs === 'manager' ? <ManagerLoginForm /> : null} {/* <EmployeeLoginPanel />} */}
+         {loginAs === 'manager' ? <ManagerLoginForm /> : <EmployeeLoginForm />} 
          {loginAs === 'manager' && (
             <S.StyledLink to='/auth/signup'>
                Create an account

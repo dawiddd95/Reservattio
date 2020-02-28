@@ -8,7 +8,7 @@ import colors from '../../assets/colors';
 export const Wrapper = styled.div`
    width: 85%;
    height: 100%;
-   margin: 25px auto 20px auto;
+   margin: 0 auto 20px auto;
 `
 
 export const FieldWrapper = styled.div`

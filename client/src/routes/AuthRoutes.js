@@ -7,7 +7,7 @@ import ForgotPasswordPage from '../pages/ForgotPasswordPage/ForgotPasswordPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
  
-const AuthRoutes: React.SFC = () => {
+const AuthRoutes = () => {
    return (  
       <Switch>
          <Route exact path='/auth/login' component={LoginPage} /> 

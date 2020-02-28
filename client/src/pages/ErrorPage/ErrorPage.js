@@ -5,7 +5,7 @@ import { Button } from 'antd';
 
 import errorImg from '../../assets/img/404.png'
 
-const ErrorPage: React.SFC = () => {
+const ErrorPage = () => {
    return (  
       <S.Wrapper>
          <S.Img src={errorImg} />

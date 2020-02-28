@@ -7,53 +7,48 @@ import axios from 'axios';
 
 import * as S from './StyledForgotPasswordForm';
 
+import FormAlert from '../FormAlert/FormAlert';
+
 
 const useForm = () => {
-   const [result, setResult] = ('')
-
-   const submitForm = (values) => {
-      //axios.post()
-      console.log('submitting....')
-      console.log(values)
+   const [loading, setLoading] = React.useState(false)
+   const [result, setResult] = React.useState({})
+   
+   const submitForm = async values => {
+      setLoading(true)
+      
+      const response = await axios.post('/api/auth/forgot-password', values)
+      
+      setResult(response.data)
+      setLoading(false)
    }
-
-   return [submitForm]
+   return [loading, result, submitForm]
 }
 
 
 const ForgotPasswordForm = () => {
-   const [submitForm] = useForm();
+   const [loading, result, submitForm] = useForm()
 
    return (  
-      <Formik
-         initialValues={{
-            email: '',
-         }}
-         validationSchema={Yup.object().shape({
-            email: Yup
-               .string()
-               .email('Invalid email')
-               .required('Email is required'),
-         })}
-         onSubmit={values => {
-            // const success = 'success'
-            // const error = 'error'
-            
-            // notification[error]({
-            //    message: 'Notification Title',
-            //    description:
-            //      'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-            // });
-            submitForm(values)
-         }}
-      >
-         {({handleSubmit}) => (
-            <S.Wrapper>
-               {/* Warunek pokazania tego monitu o rezultacie czy email istnieje czy nie */}
-               {/* text={error 
-                  ? `Sorry, we don't recognize your credentials`
-                  : 'Password reset email sent successfully'
-               } */}
+      <S.Wrapper>
+         <FormAlert
+            result={result}
+         />
+         <Formik
+            initialValues={{
+               email: '',
+            }}
+            validationSchema={Yup.object().shape({
+               email: Yup
+                  .string()
+                  .email('Email must be a valid email')
+                  .required('Email is required'),
+            })}
+            onSubmit={values => {
+               submitForm(values)
+            }}
+         >
+            {({handleSubmit}) => (
                <Form onSubmit={handleSubmit}>
                   <S.FieldWrapper>
                      <S.StyledInput 
@@ -66,13 +61,13 @@ const ForgotPasswordForm = () => {
                         component='div' 
                      />
                   </S.FieldWrapper>
-                  <SubmitButton block>
+                  <SubmitButton block loading={loading}>
                      Send password reset email
                   </SubmitButton>
                </Form>
-            </S.Wrapper>
-         )}
-      </Formik>
+            )}
+         </Formik>
+      </S.Wrapper>
    );
 }
  

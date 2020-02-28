@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 	Client.associate = function(models) {
 		Client.hasMany(models.Reservation, {
 			foreignKey: 'clientId'  
-		}),
+		})
 	};
 	return Client;
 };

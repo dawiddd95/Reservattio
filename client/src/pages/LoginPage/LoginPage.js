@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import LoginPanel from '../../components/LoginPanel/LoginPanel';
 
  
-const LoginPage: React.SFC = () => {
+const LoginPage = () => {
    return (  
       <S.Wrapper>
          <S.Content>
