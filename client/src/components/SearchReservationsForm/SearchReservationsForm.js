@@ -1,3 +1,7 @@
+// 1. Dokonczyc Yup
+// 2. Zrobić ciało formularzu i wystylowac
+// 3. Czy pokazuje poprawnie wartosci po wyslaniu
+
 import React from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -6,27 +10,26 @@ import { Form, SubmitButton } from 'formik-antd';
 import * as S from './StyledSignupForm';
 import {useAuthForm} from '../../hooks/useAuthForm';
 
-import FormAlert from '../FormAlert/FormAlert';
 
-
-const SignupForm = () => {
+const SearchReservationsForm = () => {
    const [loading, result, submitForm] = useAuthForm('/api/auth/signup');
   
    return (
       <S.Wrapper> 
-         <FormAlert
-            result={result}
-         />
          <Formik
             initialValues={{
-               name: '',
-               surname: '',
-               email: '',
-               password: '',
-               confirmPassword: '',
+               id: '',
+               date: '',
+               room: '',
+               time: '',
+               status: '',
+               client: '', // Z listy
+               employee: '', // Z listy
+               service: '', // Z listy
             }}
+            // Teraz to wstawic tylko typy dla danych czy ma byc string czy number
             validationSchema={Yup.object().shape({
-               name: Yup
+               id: Yup
                   .string()
                   .min(3, 'Minimum 3 characters')
                   .required('Name is required'),
@@ -118,7 +121,7 @@ const SignupForm = () => {
             )}
          </Formik>
       </S.Wrapper>
-   );
+   )
 }
  
-export default SignupForm;
+export default SearchReservationsForm;

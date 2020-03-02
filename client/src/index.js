@@ -1,18 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
-import RootRoutes from './routes/RootRoutes';
-import * as serviceWorker from './serviceWorker';
-import { ApolloProvider } from 'react-apollo'
+import {BrowserRouter as Router} from 'react-router-dom';
+import { ApolloProvider } from 'react-apollo';
 //import {Provider} from 'react-redux';
 
+import 'antd/dist/antd.css';
 import './index.css';
-import { client } from './apolloClient'
+import * as serviceWorker from './serviceWorker';
 //import store from './store';
+import { client } from './apolloClient'
+
+import RootRoutes from './routes/RootRoutes';
+
 
 ReactDOM.render(
    <ApolloProvider client={client}>
-      <RootRoutes />
+      <Router>
+         <RootRoutes />
+      </Router>
    </ApolloProvider>, document.getElementById('root')
 );
 

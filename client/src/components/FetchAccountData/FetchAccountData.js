@@ -1,9 +1,8 @@
 import React from 'react';
+import AppLayout from '../../layout/AppLayout/AppLayout';
 
 const FetchAccountData = () => {
-   return (  
-      <div>OK</div>
-   );
+   return <AppLayout />
 }
  
 export default FetchAccountData;

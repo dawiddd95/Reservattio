@@ -1,33 +1,16 @@
 import React from 'react';
 import {Formik} from 'formik';
 import { Form, SubmitButton } from 'formik-antd'
-import { notification } from 'antd';
 import * as Yup from 'yup';
-import axios from 'axios';
 
+import {useAuthForm} from '../../hooks/useAuthForm';
 import * as S from './StyledForgotPasswordForm';
 
 import FormAlert from '../FormAlert/FormAlert';
 
 
-const useForm = () => {
-   const [loading, setLoading] = React.useState(false)
-   const [result, setResult] = React.useState({})
-   
-   const submitForm = async values => {
-      setLoading(true)
-      
-      const response = await axios.post('/api/auth/forgot-password', values)
-      
-      setResult(response.data)
-      setLoading(false)
-   }
-   return [loading, result, submitForm]
-}
-
-
 const ForgotPasswordForm = () => {
-   const [loading, result, submitForm] = useForm()
+   const [loading, result, submitForm] = useAuthForm('/api/auth/forgot-password')
 
    return (  
       <S.Wrapper>

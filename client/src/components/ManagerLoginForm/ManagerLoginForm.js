@@ -36,8 +36,6 @@ const useForm = () => {
 const ManagerLoginForm = () => {
    const [loading, result, submitForm] = useForm();
 
-   console.log(result)
-
    return (  
       <S.Wrapper>
          {result.success && <Redirect to='/user/reservations' />}
