@@ -1,41 +1,40 @@
 import styled from 'styled-components';
-import {ErrorMessage} from 'formik';
-import { Input } from 'formik-antd'
-import colors from '../../assets/colors';
+import { Form, Input, SubmitButton } from 'formik-antd';
 
 export const Wrapper = styled.div`
-   width: 85%;
+   width: 90%;
    height: 100%;
-   margin: 45px auto 20px auto;
+   margin: 15px auto 25px auto;
+`
+
+export const StyledForm = styled(Form)`
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
 `
 
 export const FieldWrapper = styled.div`
-   width: 100%;
-   min-height: 60px;
+   width: 48%;
    height: 100%;
    margin-bottom: 8px;
-   color: rgba(0,0,0,0.65);
 
    display: flex;
    flex-direction: column;
 `
 
-export const StyledInput = styled(Input)`
-   padding: 18px 10px;
+export const Label = styled.label`
+   margin: 5px 10px 0 0;
+   font-weight: 600;
+   color: black;
 `
 
-export const StyledErrorMessage = styled(ErrorMessage)`
-   margin-right: auto;
-   margin-left: 5px;
-   font-family: 'segoe';
-   font-size: 14px;
-   color: ${colors.redColor};
-`
+export const ButtonsWrapper = styled.div`
+   width: 100%;
 
-export const Error = styled.p`
-   margin-right: auto;
-   margin-left: 5px;
-   font-family: 'segoe';
-   font-size: 14px;
-   color: ${colors.redColor};
+   display: flex;
+   justify-content: flex-end;
+
+   button {
+      margin: 0 0 0 15px;
+   }
 `

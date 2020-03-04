@@ -3,8 +3,10 @@ import React from 'react';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ButtonsGroup from '../../components/ButtonsGroup/ButtonsGroup';
 import SearchReservationsForm from '../../components/SearchReservationsForm/SearchReservationsForm';
+import ReservationsTable from '../../components/ReservationsTable/ReservationsTable';
 
 import * as S from './StyledReservationsPage';
+
 
 const ReservationsPage = () => {
    return (  
@@ -15,13 +17,14 @@ const ReservationsPage = () => {
             ]}
             text='Reservations'
          />
-         <S.StyledCard title="Reservations" bordered>
+         <S.StyledCard title='Reservations' bordered>
             <ButtonsGroup 
                entity='reservations'
             />
-            <S.StyledCard>
+            <S.StyledCard title='Search Reservations' margin_style>
                <SearchReservationsForm />
             </S.StyledCard>
+            <ReservationsTable />
          </S.StyledCard>
       </S.Wrapper>
    );

@@ -6,6 +6,6 @@ export const Wrapper = styled.div`
 `
 
 export const StyledCard = styled(Card)`
-   margin: ${({margin_style}) => margin_style ? '0 0 50px 0' : '0 0 30px 0'}
+   margin: 0 0 40px 0;
    border-radius: 4px;
 `

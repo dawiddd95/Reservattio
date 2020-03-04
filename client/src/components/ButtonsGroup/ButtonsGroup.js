@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {Button} from 'antd';
 import {PlusOutlined, UploadOutlined, CopyOutlined, FileExcelOutlined} from '@ant-design/icons';
 
@@ -8,7 +7,7 @@ import * as S from './StyledButtonsGroup';
 const ButtonsGroup = ({entity}) => {
    return (  
       <S.Wrapper>
-         <S.StyledLink to={`/user/${entity}/create`}>
+         <S.StyledLink to={`/user/${entity}/new`}>
             <Button type='primary'>
                <PlusOutlined color='white' />
                New

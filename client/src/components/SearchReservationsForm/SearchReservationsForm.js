@@ -1,123 +1,160 @@
-// 1. Dokonczyc Yup
-// 2. Zrobić ciało formularzu i wystylowac
-// 3. Czy pokazuje poprawnie wartosci po wyslaniu
-
 import React from 'react';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
-import { Form, SubmitButton } from 'formik-antd';
+import { Input, ResetButton, SubmitButton, Select as FormSelect, DatePicker} from 'formik-antd';
+import { Select } from 'antd';
+import { UndoOutlined, SearchOutlined } from '@ant-design/icons';
+import moment from 'moment';
 
-import * as S from './StyledSignupForm';
-import {useAuthForm} from '../../hooks/useAuthForm';
+import * as S from './StyledSearchReservationsForm';
+import SelectClient from '../SelectClient/SelectClient';
+
+const { Option, OptGroup } = Select;
+const { RangePicker } = DatePicker;
+
+
+const fakeEmployees = [
+   {id: 62735, name: 'Natalia', surname: 'Stąpor', type: 'Employee'},
+   {id: 1345232234, name: 'Justyna', surname: 'Jabłońska', type: 'Employee'}
+]
+
+const fakeManager = [
+   {id: 16244, name: 'Dawid', surname: 'Łychoński', type: 'Manager'},
+]
+
+const fakeServices = [
+   {id: 257, name: 'Diagnoza'},
+   {id: 2354, name: 'Fizjoterapia'},
+   {id: 234, name: 'Masaż'}
+]
+
+const fakeClients = [
+   {id: 1212132, name: 'Katarzyna', surname: 'Małek', phone: '735 675 123'},
+   {id: 653, name: 'Kamil', surname: 'Miller', phone: '727 152 763'},
+   {id: 63, name: 'Roksana', surname: 'Mielc', phone: '947 363 937'}
+]
+
+
+// ////////////////////////////////////////////////////////////////////////////////
+
+const useForm = () => {
+   const submitForm = values => {
+      const formValues = {
+         ...values, 
+         date: [
+            moment(values.date[0]._d).format('YYYY-MM-DD'), 
+            moment(values.date[1]._d).format('YYYY-MM-DD')
+         ]
+      }
+
+      console.log(formValues)
+   }
+
+   return [submitForm]
+}
 
 
 const SearchReservationsForm = () => {
-   const [loading, result, submitForm] = useAuthForm('/api/auth/signup');
+   const [submitForm] = useForm();
   
    return (
       <S.Wrapper> 
          <Formik
             initialValues={{
-               id: '',
-               date: '',
-               room: '',
-               time: '',
+               id: '', 
+               date: '', 
+               room: '', 
                status: '',
-               client: '', // Z listy
-               employee: '', // Z listy
-               service: '', // Z listy
+               client: '',
+               employee: '',
+               service: '',
             }}
-            // Teraz to wstawic tylko typy dla danych czy ma byc string czy number
-            validationSchema={Yup.object().shape({
-               id: Yup
-                  .string()
-                  .min(3, 'Minimum 3 characters')
-                  .required('Name is required'),
-               surname: Yup
-                  .string()
-                  .min(3, 'Minimum 3 characters')
-                  .required('Surname is required'),
-               email: Yup
-                  .string()
-                  .email('Email must be a valid email')
-                  .required('Email is required'),
-               password: Yup
-                  .string()
-                  .min(8, 'Minimum 8 characters')
-                  .matches(/^(?=.*[A-Z])/, 'Must contain at least one uppercase character')
-                  .matches(/^(?=.*[0-9])/, 'Must contain at least one numeric character')
-                  .matches(/^(?=.*[!@#$%^&*()])/, 'Must contain at least one special character')
-                  .required('Password is required'),
-               confirmPassword: Yup
-                  .string()
-                  .required('Password must match')
-                  .oneOf([Yup.ref('password'), null], 'Passwords must match'),
-            })}
-            onSubmit={values => {
+            onSubmit={values => {      
                submitForm(values)   
             }}
          >
             {({handleSubmit}) => (
-               <Form onSubmit={handleSubmit}>
+               <S.StyledForm onSubmit={handleSubmit}>
                   <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='name' 
+                     <S.Label>
+                        Id:
+                     </S.Label>
+                     <Input 
+                        name='id' 
                         type='text' 
-                        placeholder='Name' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='name' 
-                        component='p' 
                      />
                   </S.FieldWrapper>
                   <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='surname' 
+                     <S.Label>
+                        Employee:
+                     </S.Label>
+                     <FormSelect name='employee'>
+                        <OptGroup label="Manager">
+                           {fakeManager.map(manager => 
+                              <Option value={manager.id} key={manager.id}>
+                                 {manager.name} {manager.surname} [{manager.type}]
+                              </Option>
+                           )}
+                        </OptGroup>
+                        <OptGroup label="Employees">
+                           {fakeEmployees.map(employee =>
+                              <Option value={employee.id} key={employee.id}>
+                                 {employee.name} {employee.surname} [{employee.type}]
+                              </Option>
+                           )}     
+                        </OptGroup>
+                     </FormSelect>
+                  </S.FieldWrapper>
+                  <S.FieldWrapper>
+                     <S.Label>
+                        Status:
+                     </S.Label>
+                     <FormSelect name='status'>
+                        <Option value='Reserved'>Reserved</Option>
+                        <Option value='In Progress'>In Progress</Option>
+                        <Option value='Cancelled'>Cancelled</Option>
+                        <Option value='Completed'>Completed</Option>
+                     </FormSelect>
+                  </S.FieldWrapper>
+                  <SelectClient />
+                  <S.FieldWrapper>
+                     <S.Label>
+                        Room:
+                     </S.Label>
+                     <Input 
+                        name='room' 
                         type='text' 
-                        placeholder='Surname' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='surname' 
-                        component='p' 
                      />
                   </S.FieldWrapper>
                   <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='email' 
-                        type='text' 
-                        placeholder='Email' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='email' 
-                        component='p' 
-                     />
+                     <S.Label>
+                        Service:
+                     </S.Label>
+                     <FormSelect name='service'>
+                        {fakeServices.map(service =>
+                           <Option value={service.id} key={service.id}>
+                              {service.name}
+                           </Option>
+                        )}     
+                     </FormSelect>
                   </S.FieldWrapper>
                   <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='password' 
-                        type='password' 
-                        placeholder='Password' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='password' 
-                        component='p' 
-                     />
+                     <S.Label>
+                        Period:
+                     </S.Label>
+                     <RangePicker name='date' />
                   </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='confirmPassword' 
-                        type='password' 
-                        placeholder='Confirm password' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='confirmPassword' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>        
-                  <SubmitButton block loading={loading}>
-                     Sign up
-                  </SubmitButton>
-               </Form>
+                  <S.ButtonsWrapper>
+                     <SubmitButton>  
+                        {/* loading={loading}> */}
+                        <SearchOutlined />
+                        Search
+                     </SubmitButton>
+                     <ResetButton>
+                        <UndoOutlined />
+                        Reset
+                     </ResetButton>
+                  </S.ButtonsWrapper>
+               </S.StyledForm>
             )}
          </Formik>
       </S.Wrapper>
