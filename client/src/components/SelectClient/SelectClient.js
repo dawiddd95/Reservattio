@@ -22,7 +22,7 @@ const SelectClient = () => {
          <S.Label>
             Client:
          </S.Label>
-         <Select name='client'>
+         <Select name='clientId'>
             {fakeClients.map(client =>
                <Option value={client.id} key={client.id}>
                   {client.name} {client.surname} [{client.phone}]

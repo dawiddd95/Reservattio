@@ -4,7 +4,7 @@ import {PlusOutlined, UploadOutlined, CopyOutlined, FileExcelOutlined} from '@an
 
 import * as S from './StyledButtonsGroup';
 
-const ButtonsGroup = ({entity}) => {
+const ButtonsGroup = ({entity, showExportImport}) => {
    return (  
       <S.Wrapper>
          <S.StyledLink to={`/user/${entity}/new`}>
@@ -13,22 +13,26 @@ const ButtonsGroup = ({entity}) => {
                New
             </Button>
          </S.StyledLink>
-         <S.StyledLink to={`/user/${entity}/import`}>
-            <Button type='primary'>
-               <UploadOutlined />
-               Import
-            </Button>
-         </S.StyledLink>
+         {showExportImport &&
+            <S.StyledLink to={`/user/${entity}/import`}>
+               <Button type='primary'>
+                  <UploadOutlined />
+                  Import
+               </Button>
+            </S.StyledLink>
+         }
          <S.StyledLink to={`/user/${entity}/audit?entityNames=${entity}`}>
             <Button>
                <CopyOutlined />
                Audit Logs
             </Button>
          </S.StyledLink>
-         <Button>
-            <FileExcelOutlined />
-            Export to excel
-         </Button>
+         {showExportImport &&
+            <Button>
+               <FileExcelOutlined />
+               Export to excel
+            </Button>
+         }
       </S.Wrapper>
    );
 }

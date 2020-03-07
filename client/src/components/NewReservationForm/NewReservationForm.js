@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import { Form, SubmitButton, ResetButton } from 'formik-antd';
@@ -17,22 +18,28 @@ import FormTextArea from '../FormTextArea/FormTextArea';
 
 
 const useForm = () => {
-   const submitForm = values => {
+   const [loading, setLoading] = React.useState(false)
+   const [result, setResult] = React.useState({})
+
+   const submitForm = async values => {
+      setLoading(true)
+
       const date = [
          moment(values.date[0]._d).format('YYYY-MM-DD'), 
          moment(values.date[1]._d).format('YYYY-MM-DD')
       ]
 
-      const formValues = {
-         ...values, 
-         date
-      }
+      const formValues = {...values, date}
 
-      console.log(formValues)
+      const response = await axios.post('/api/user/reservations/new', formValues, {withCredentials: true})
+
+      setResult(response.data)
+      setLoading(false)
    }
 
    return [submitForm]
 }
+
 
 
 const NewReservationForm = () => {
@@ -47,9 +54,9 @@ const NewReservationForm = () => {
                endTime: '',
                room: '', 
                status: '',
-               client: '',
-               employee: '',
-               service: '',
+               clientId: '',
+               employeeId: '',
+               serviceId: '',
                note: '', 
                cancellationNote: '',
             }}
@@ -72,16 +79,19 @@ const NewReservationForm = () => {
                   .string()
                   .oneOf(['Reserved', 'In Progress', 'Cancelled', 'Completed'], 'Must be correct value')
                   .required('Status is required'),
-               client: Yup
+               clientId: Yup
                   .string()
                   .required('Client is required'),
-               employee: Yup
+               employeeId: Yup
                   .string()
                   .required('Employee is required'),
-               service: Yup
+               serviceId: Yup
                   .string()
                   .required('Service is required'),
                note: Yup
+                  .string()
+                  .notRequired(),
+               cancellationNote: Yup
                   .string()
                   .notRequired(),
             })}
@@ -124,12 +134,12 @@ const NewReservationForm = () => {
                   <S.ButtonsWrapper>
                      <SubmitButton>  
                         {/* loading={loading}> */}
-                        <SaveOutlined />
                         Save
+                        <SaveOutlined />
                      </SubmitButton>
                      <ResetButton>
-                        <UndoOutlined />
                         Reset
+                        <UndoOutlined />
                      </ResetButton>
                   </S.ButtonsWrapper>
                </Form>

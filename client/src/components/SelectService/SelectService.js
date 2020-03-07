@@ -20,7 +20,7 @@ const SelectService = () => {
          <S.Label>
             Service:
          </S.Label>
-         <Select name='service'>
+         <Select name='serviceId'>
             {fakeServices.map(service =>
                <Option value={service.id} key={service.id}>
                   {service.name}

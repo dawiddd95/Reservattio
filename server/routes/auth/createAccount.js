@@ -11,7 +11,6 @@ const router = express.Router();
 router.post('/api/auth/signup', createAccountValidation , async (req, res) => { 
    const {name, surname, email, password} = req.body;
 
-   const id = uuid.v4();
    const key = uuid.v4();
    const code = uuid.v4();
    const hashPassword = await bcrypt.hash(password, 10);

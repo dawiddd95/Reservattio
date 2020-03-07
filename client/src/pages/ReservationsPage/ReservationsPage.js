@@ -20,8 +20,9 @@ const ReservationsPage = () => {
          <S.StyledCard title='Reservations' bordered>
             <ButtonsGroup 
                entity='reservations'
+               showExportImport={true}
             />
-            <S.StyledCard title='Search Reservations' margin_style>
+            <S.StyledCard title='Search Reservations' margin_style='true'>
                <SearchReservationsForm />
             </S.StyledCard>
             <ReservationsTable />

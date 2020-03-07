@@ -1,31 +1,48 @@
-import * as Yup from 'yup'
+import {check} from 'express-validator';
 
-const createReservationValidation = Yup.object().shape({
-   client: Yup
-      .string()
-      .required('Client is required'),
-   room: Yup
-      .string(),
-   status: Yup
-      .string(),
-   reservationStartDate: Yup
-      .string()
-      .required('Reservation start date is required'),
-   reservationStartTime: Yup
-      .string()
-      .required('Reservation start time is required'),
-   reservationEndDate: Yup
-      .string()
-      .required('Reservation end date is required'),
-   reservationEndTime: Yup
-      .string()
-      .required('Reservation end time is required'),
-   notes: Yup
-      .string(),
-   employeeNotes: Yup
-      .string(),
-   cancellationNotes: Yup
-      .string()
-})
-
-export default createReservationValidation
+export const createReservationValidation = [
+   check('date')
+      .not().isEmpty()
+      .isArray()
+      .withMessage('Date is required')
+      .escape(),
+   check('clientId')
+      .not().isEmpty()
+      .isString()
+      .withMessage('Client is required')
+      .escape(),
+   check('room')
+      .optional()
+      .escape(),
+   check('status')
+      .not().isEmpty()
+      .isString()
+      .withMessage('Status is required')
+      .escape(),
+   check('employeeId')
+      .not().isEmpty()
+      .isString()
+      .withMessage('Employee is required')
+      .escape(),
+   check('serviceId')
+      .not().isEmpty()
+      .isString()
+      .withMessage('Service is required')
+      .escape(),
+   check('startTime')
+      .not().isEmpty()
+      .isString()
+      .withMessage('Start time is required')
+      .escape(),
+   check('endTime')
+      .not().isEmpty()
+      .isString()
+      .withMessage('End time is required')
+      .escape(),
+   check('note')
+      .optional()
+      .escape(),
+   check('cancellationNote')
+      .optional()
+      .escape(),
+]

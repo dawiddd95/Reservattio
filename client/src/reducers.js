@@ -1,15 +1,9 @@
 import { combineReducers } from 'redux';
 
-import fetchedLoggedUser from './app/user/duck'; 
-import menuVisibility from './app/navbar/duck';
-import fetchedUserReservations from './app/reservations/duck';
-import fetchedUserEmployees from './app/employees/duck';
+import servicesReducer from './app/services'; 
 
 const appReducer = combineReducers({
-   fetchedLoggedUser,
-   menuVisibility,
-   fetchedUserReservations,
-   fetchedUserEmployees
+   servicesReducer,
 })
 
 // reset redux store

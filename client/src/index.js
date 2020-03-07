@@ -1,24 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
-//import {Provider} from 'react-redux';
+import {Provider} from 'react-redux';
 
 import 'antd/dist/antd.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-//import store from './store';
-import { client } from './apolloClient'
 
 import RootRoutes from './routes/RootRoutes';
+import store from './store';
 
 
 ReactDOM.render(
-   <ApolloProvider client={client}>
-      <Router>
+   <Router>
+      <Provider store={store}>
          <RootRoutes />
-      </Router>
-   </ApolloProvider>, document.getElementById('root')
+      </Provider>
+   </Router>, document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

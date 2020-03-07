@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     view: DataTypes.STRING
   }, {});
   AuditLog.associate = function(models) {
-    // associations can be defined here
+
   };
   return AuditLog;
 };

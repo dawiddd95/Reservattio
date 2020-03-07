@@ -24,7 +24,7 @@ const SelectEmployee = () => {
          <S.Label>
             Employee:
          </S.Label>
-         <Select name='employee'>
+         <Select name='employeeId'>
             <OptGroup label="Manager">
                {fakeManager.map(manager => 
                   <Option value={manager.id} key={manager.id}>

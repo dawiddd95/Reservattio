@@ -5,11 +5,20 @@ module.exports = (sequelize, DataTypes) => {
     room: DataTypes.STRING,
     startTime: DataTypes.STRING,
     endTime: DataTypes.STRING,
+    accountId: DataTypes.INTEGER,
+    employeeId: DataTypes.INTEGER,
+    serviceId: DataTypes.INTEGER,
+    clientId: DataTypes.INTEGER,
+    status: {
+      defaultValue: 'Reserved',
+      type: DataTypes.ENUM,
+      values: ['Reserved', 'In Progress', 'Cancelled', 'Completed']
+    },
     note: DataTypes.STRING,
     cancellationNote: DataTypes.STRING
   }, {});
   Reservation.associate = function(models) {
-    // associations can be defined here
+
   };
   return Reservation;
 };

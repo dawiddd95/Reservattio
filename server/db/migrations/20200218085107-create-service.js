@@ -14,6 +14,9 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL
       },
+      note: {
+        type: Sequelize.STRING
+      },
       accountId: {
         type: Sequelize.INTEGER,
         references: {

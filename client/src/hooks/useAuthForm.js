@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+
+//  Przy Signup dwa axios.posrt() do konta i do managera
+
 export const useAuthForm = (url) => {
    const [loading, setLoading] = React.useState(false)
    const [result, setResult] = React.useState({})

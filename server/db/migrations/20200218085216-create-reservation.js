@@ -20,6 +20,11 @@ module.exports = {
       endTime: {
         type: Sequelize.STRING
       },
+      status: {
+        defaultValue: 'Reserved',
+        type: Sequelize.ENUM,
+        values: ['Reserved', 'In Progress', 'Cancelled', 'Completed']
+      },
       note: {
         type: Sequelize.STRING
       },
