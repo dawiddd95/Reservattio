@@ -13,7 +13,11 @@ const servicesReducer = (state = INITIAL_STATE, action) => {
          })
       case types.ADD_SERVICE:
          return produce(state, draftState => {
-            draftState.services =  draftState.services.concat(action.item)
+            draftState.services = draftState.services.concat(action.item)
+         })
+      case types.DELETE_SERVICE:
+         return produce(state, draftState => {
+            draftState.services = draftState.services.filter(service => service.id !== action.item)
          })
        
       default:

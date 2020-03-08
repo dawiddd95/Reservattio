@@ -5,6 +5,7 @@ import * as S from './StyledServicesPage';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ButtonsGroup from '../../components/ButtonsGroup/ButtonsGroup';
 import SearchServicesForm from '../../components/SearchServicesForm/SearchServicesForm';
+import ServicesTable from '../../components/ServicesTable/ServicesTable';
 
 
 
@@ -25,7 +26,7 @@ const ServicesPage = () => {
             <S.StyledCard title='Search Services' margin_style='true'>
                <SearchServicesForm />
             </S.StyledCard>
-            
+            <ServicesTable />
          </S.StyledCard>
       </S.Wrapper>
    );
