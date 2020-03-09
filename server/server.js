@@ -14,7 +14,7 @@ import createClientRoute from './routes/clients/createClient'
 import createServiceRoute from './routes/services/createService'
 import deleteServiceRoute from './routes/services/deleteService'
 import fetchServiceRoute from './routes/services/fetchService'
-
+import editServiceRoute from './routes/services/editService'
 
 dotenv.config();   
 
@@ -35,5 +35,6 @@ app.use(createClientRoute)
 app.use(createServiceRoute)
 app.use(deleteServiceRoute)
 app.use(fetchServiceRoute)
+app.use(editServiceRoute)
 
 app.listen(5000, () => console.log('Now browse to localhost:5000'))

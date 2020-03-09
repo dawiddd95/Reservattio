@@ -8,6 +8,10 @@ const addService = item => ({
    type: types.ADD_SERVICE, item
 })
 
+const editService = item => ({
+   type: types.EDIT_SERVICE, item
+})
+
 const deleteService = item => ({
    type: types.DELETE_SERVICE, item
 })
@@ -15,5 +19,6 @@ const deleteService = item => ({
 export default {
    addFetchedServices,
    addService,
+   editService,
    deleteService
 }

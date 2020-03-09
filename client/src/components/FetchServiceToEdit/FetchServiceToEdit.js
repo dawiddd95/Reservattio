@@ -4,19 +4,19 @@ import {useFetchService} from '../../hooks/useFetchService';
 
 import LoadingPage from '../../pages/LoadingPage/LoadingPage';
 import ErrorPage from '../../pages/ErrorPage/ErrorPage';
-import ServiceDetailsPage from '../../pages/ServiceDetailsPage/ServiceDetailsPage';
+import ServiceEditPage from '../../pages/ServiceEditPage/ServiceEditPage';
 
 
-const FetchService = ({match}) => {
+const FetchServiceToEdit = ({match}) => {
    const [loading, error, data] = useFetchService(match.params.id)
    
    return (  
       <>
          {loading && <LoadingPage />}
          {error && <ErrorPage />}
-         {data && <ServiceDetailsPage data={data} />}
+         {data && <ServiceEditPage data={data} />}
       </>
    );
 }
  
-export default FetchService;
+export default FetchServiceToEdit;
