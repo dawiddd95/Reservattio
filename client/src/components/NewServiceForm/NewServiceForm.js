@@ -58,6 +58,8 @@ const NewServiceForm = () => {
                      .required('Service name is required'),
                   price: Yup
                      .number('Letters are not allowed')
+                     .lessThan(2147483647, 'Price can not be higher or equal 21474836467')
+                     .positive('Price can not be negative number or 0')
                      .required('Service price is required'),
                   note: Yup
                      .string()

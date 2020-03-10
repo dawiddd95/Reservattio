@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 `
 
 export const StyledForm = styled(Form)`
+   width: 100%;
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;

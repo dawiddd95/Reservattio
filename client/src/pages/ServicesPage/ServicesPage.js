@@ -23,7 +23,7 @@ const ServicesPage = () => {
                entity='services'
                showExportImport={false}
             />
-            <S.StyledCard title='Search Services' margin_style='true'>
+            <S.StyledCard title='Search Services'>
                <SearchServicesForm />
             </S.StyledCard>
             <ServicesTable />

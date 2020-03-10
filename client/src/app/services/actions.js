@@ -1,5 +1,9 @@
 import types from './types';
 
+const loadingServices = item => ({
+   type: types.LOADING_SERVICES, item
+})
+
 const addFetchedServices = item => ({
    type: types.FETCH_SERVICES, item
 })
@@ -16,9 +20,20 @@ const deleteService = item => ({
    type: types.DELETE_SERVICE, item
 })
 
+const isSearchingServices = item => ({
+   type: types.IS_SEARCHING_SERVICES, item
+})
+
+const searchServices = item => ({
+   type: types.SEARCH_SERVICES, item
+})
+
 export default {
+   loadingServices,
    addFetchedServices,
    addService,
    editService,
-   deleteService
+   deleteService,
+   isSearchingServices,
+   searchServices,
 }
