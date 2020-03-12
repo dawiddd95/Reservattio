@@ -33,7 +33,7 @@ const servicesReducer = (state = INITIAL_STATE, action) => {
 
       case types.DELETE_SERVICE:
          return produce(state, draftState => {
-            draftState.services = draftState.services.filter(service => service.id !== action.item)
+            draftState.services = draftState.services.filter(service => !action.item.includes(service.id))
          })
 
       case types.IS_SEARCHING_SERVICES:
@@ -44,6 +44,11 @@ const servicesReducer = (state = INITIAL_STATE, action) => {
       case types.SEARCH_SERVICES:
          return produce(state, draftState => {
             draftState.searchedServices = action.item
+         })
+
+      case types.DELETE_SEARCH_SERVICE:
+         return produce(state, draftState => {
+            draftState.searchedServices = draftState.searchedServices.filter(service => !action.item.includes(service.id))
          })
        
       default:

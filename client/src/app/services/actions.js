@@ -28,6 +28,10 @@ const searchServices = item => ({
    type: types.SEARCH_SERVICES, item
 })
 
+const deleteSearchService = item => ({
+   type: types.DELETE_SEARCH_SERVICE, item
+})
+
 export default {
    loadingServices,
    addFetchedServices,
@@ -36,4 +40,5 @@ export default {
    deleteService,
    isSearchingServices,
    searchServices,
+   deleteSearchService
 }

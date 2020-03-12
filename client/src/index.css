@@ -13,7 +13,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #F5222D;
+  background: #1890ff;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
@@ -48,4 +48,4 @@ html, body {
    background: #f1f1f1; }
  
  ::-webkit-scrollbar-thumb {
-   background-color: #f26876; }
+   background-color: #1890ff; }

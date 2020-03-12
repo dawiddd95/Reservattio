@@ -1,59 +1,44 @@
 import React from 'react';
-import {Button, Table, Tag} from 'antd';
-import { UndoOutlined } from '@ant-design/icons';
-import {useDispatch, useSelector} from 'react-redux';
+import {Button, Table, Popconfirm, Alert} from 'antd';
+import { UndoOutlined, DeleteOutlined } from '@ant-design/icons';
+import {useSelector} from 'react-redux';
 
 import * as S from './StyledServicesTable';
-import actions from '../../app/services/actions';
+import {useServicesTable} from '../../hooks/useServicesTable';
 
-import DeleteService from '../DeleteService/DeleteService';
+import {servicesTableColumns} from '../../assets/data/servicesTableColumns';
 
-
-const columns = [
-   { title: 'Id', dataIndex: 'id', key: 'id' },
-	{ title: 'Name', dataIndex: 'name', key: 'name' },
-   { title: 'Price', dataIndex: 'price', key: 'price', render: (dataIndex) => <p>${dataIndex}</p> },
-   { title: 'Created At', key: 'createdAt', dataIndex: 'createdAt' },
-   { 
-      title: 'Action', 
-      key: 'action',
-      render: ({id}) => 
-         <>
-            <S.StyledLink to={`/user/services/${id}`}>View</S.StyledLink>
-            <S.StyledLink to={`/user/services/${id}/edit`}>Edit</S.StyledLink>
-            <DeleteService 
-               id={id} 
-               buttonType='link'
-            />
-         </>
-   },
-]
-
-
-const useTable = () => {
-   const dispatch = useDispatch()
-   const [isReloading, setIsReloading] = React.useState(false)
-
-   const reloadData = () => {
-      setIsReloading(true)
-      dispatch(actions.isSearchingServices(false))
-      setIsReloading(false)
-   }
-
-   return [isReloading, reloadData]
-}
 
 
 const ServicesTable = () => {
-   const [isReloading, reloadData] = useTable()
+   const [isReloading, selectedRowKeys, showTotal, reloadData, handleChangeRow, confirmDelete] = useServicesTable()
    const {loading, services, isSearching, searchedServices} = useSelector(state => state.servicesReducer)
-   const data = !isSearching 
-      ?  services.map((service, index) => ({...service, key: index}))
-      :  searchedServices.map((service, index) => ({...service, key: index}))
 
+   const data = !isSearching 
+      ?  services.map(service => ({...service, key: service.id}))
+      :  searchedServices.map(service => ({...service, key: service.id}))
+   
+   const rowSelection = {
+      onChange: handleChangeRow,
+   }
+
+   const markedItems = services.filter(service => selectedRowKeys.includes(service.id))
+   
    return (  
       <S.Wrapper>
-         <S.ReloadWrapper>
+         <S.ButtonsWrapper>
+            <Popconfirm 
+               placement="topLeft" 
+               title='Are you sure to delete marked services ?' 
+               onConfirm={confirmDelete} 
+               okText='Yes' 
+               cancelText='No'
+            >
+               <Button type="primary" disabled={markedItems.length === 0}>
+                  delete
+                  <DeleteOutlined />
+               </Button>
+            </Popconfirm>
             <Button type='primary' disabled={!isSearching} loading={isReloading} onClick={reloadData}>
                Reload
                <UndoOutlined />
@@ -62,12 +47,27 @@ const ServicesTable = () => {
                ?  <S.P>You now see all Services.</S.P> 
                :  <S.P>You now see only searched Services. Please click reload button, to see all services again.</S.P>
             }
-         </S.ReloadWrapper>
-         <Table 
-            columns={columns} 
-            dataSource={data} 
-            loading={loading}
-         />
+         </S.ButtonsWrapper>
+         <S.TableWrapper>
+            {( markedItems.length > 0 && isSearching ) &&
+               <Alert
+                  message='Warning'
+                  description={`You have selected ${markedItems.length} items. If you do not see all items, please reload services table to see all selected items.`}
+                  type='warning'
+                  showIcon
+               />
+            }
+            <Table
+               columns={servicesTableColumns} 
+               dataSource={data} 
+               loading={loading}
+               pagination={{
+                  showSizeChanger: true,
+                  showTotal,
+               }}
+               rowSelection={rowSelection}
+            />
+         </S.TableWrapper>
       </S.Wrapper>
    );
 }

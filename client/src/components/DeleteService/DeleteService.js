@@ -2,21 +2,23 @@ import React from 'react';
 import {Popconfirm, Button} from 'antd';
 import {DeleteOutlined} from '@ant-design/icons';
 import axios from 'axios';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import actions from '../../app/services/actions';
 
 const useTableAction = () => {
    const dispatch = useDispatch()  
+   const {searchedServices} = useSelector(state => state.servicesReducer)
    const [success, setSuccess] = React.useState(false)
 
    const confirmDelete = async id => {
-      const response = await axios.post('/api/user/services/delete', {id}, {withCredentials: true})
+      const response = await axios.post('/api/user/services/delete', {id: [id]}, {withCredentials: true})
       const {success} = response.data;
 
       if(success) {
-         dispatch(actions.deleteService(id))
+         dispatch(actions.deleteService([id]))
+         dispatch(actions.deleteSearchService([id]))
          setSuccess(true)
       }
    }
@@ -34,7 +36,7 @@ const DeleteService = ({id, buttonType}) => {
          {success && <Redirect to='/user/services' />}
          <Popconfirm 
             placement="topLeft" 
-            title='Are you sure to delete this service?' 
+            title='Are you sure to delete this service ?' 
             onConfirm={() => confirmDelete(id)} 
             okText='Yes' 
             cancelText='No'
