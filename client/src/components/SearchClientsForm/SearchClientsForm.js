@@ -1,14 +1,27 @@
 import React from 'react';
+import axios from 'axios';
 import {Formik} from 'formik';
+import {useDispatch, useSelector} from 'react-redux';
 import { Input, ResetButton, SubmitButton } from 'formik-antd';
 import { UndoOutlined, SearchOutlined } from '@ant-design/icons';
 
 import * as S from './StyledSearchClientsForm';
+import actions from '../../app/clients/actions';
 
 
 const useForm = () => {
-   const submitForm = values => {
-      console.log(values)
+   const dispatch = useDispatch();
+
+   const submitForm = async values => {
+      dispatch(actions.loadingClients(true))
+
+      const response = await axios.post(`/api/user/clients/search`, values, {withCredentials: true})
+      const {data} = response.data;
+
+      if(data) dispatch(actions.searchClients(data))
+
+      dispatch(actions.loadingClients(false))
+      dispatch(actions.isSearchingClients(true))
    }
 
    return [submitForm]
@@ -17,6 +30,7 @@ const useForm = () => {
 
 
 const SearchClientsForm = () => {
+   const {loading} = useSelector(state => state.clientsReducer)
    const [submitForm] = useForm();
 
    return (
@@ -71,14 +85,13 @@ const SearchClientsForm = () => {
                      />
                   </S.FieldWrapper>
                   <S.ButtonsWrapper>
-                     <SubmitButton>  
-                        {/* loading={loading}> */}
-                        <SearchOutlined />
+                     <SubmitButton loading={loading}>
                         Search
+                        <SearchOutlined />
                      </SubmitButton>
                      <ResetButton>
-                        <UndoOutlined />
                         Reset
+                        <UndoOutlined /> 
                      </ResetButton>
                   </S.ButtonsWrapper>
                </S.StyledForm>

@@ -3,12 +3,12 @@ import {validationResult} from 'express-validator';
 import jwtDecode from 'jwt-decode';
 
 import models from '../../db/models';
-import {createServiceValidation} from '../../services/validations/createService';
+import {serviceValidation} from '../../services/validations/service';
 import checkToken from '../../services/checkToken';
 
 const router = express.Router();
 
-router.post('/api/user/services/new', createServiceValidation, checkToken, async (req, res) => { 
+router.post('/api/user/services/new', serviceValidation, checkToken, async (req, res) => { 
    const {token} = req.cookies;
    const {name, price, note} = req.body;
 

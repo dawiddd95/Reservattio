@@ -2,7 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import {useDispatch} from 'react-redux';
 
-import thunkActions from '../../app/services/thunks';
+import {fetchedServicesThunk} from '../../app/services/thunks';
+import {fetchedClientsThunk} from '../../app/clients/thunks';
+
 
 import AppLayout from '../../layout/AppLayout/AppLayout';
 import LoadingPage from '../../pages/LoadingPage/LoadingPage';
@@ -22,8 +24,8 @@ const useFetch = () => {
          if(fetched) {
             // dispatch(thunkActions.fetchedServicesThunk(fetched[0].Reservations))
             // dispatch(thunkActions.fetchedServicesThunk(fetched[0].Employees))
-            // dispatch(thunkActions.fetchedServicesThunk(fetched[0].Clients))
-            dispatch(thunkActions.fetchedServicesThunk(fetched[0].Services))
+            dispatch(fetchedClientsThunk(fetched[0].Clients))
+            dispatch(fetchedServicesThunk(fetched[0].Services))
          }
          setLoading(false);
       }

@@ -3,12 +3,12 @@ import {validationResult} from 'express-validator';
 import jwtDecode from 'jwt-decode';
 
 import models from '../../db/models';
-import {createClientValidation} from '../../services/validations/createClient';
+import {clientValidation} from '../../services/validations/client';
 import checkToken from '../../services/checkToken';
 
 const router = express.Router();
 
-router.post('/api/user/clients/new', createClientValidation, checkToken, async (req, res) => { 
+router.post('/api/user/clients/new', clientValidation, checkToken, async (req, res) => { 
    const {token} = req.cookies;
    const {name, surname, phone, note} = req.body;
 
@@ -19,9 +19,9 @@ router.post('/api/user/clients/new', createClientValidation, checkToken, async (
    if (!errors.isEmpty()) return res.status(422).jsonp(errors.array());
 
    try {
-      await models.Client.create({ accountId: id, name, surname, phone, note })
+      const client = await models.Client.create({ accountId: id, name, surname, phone, note })
 
-      res.json({success: true, error: null})
+      res.json({data: client, error: null})
    } catch(err) {
       res.status(400).send(err)
    }

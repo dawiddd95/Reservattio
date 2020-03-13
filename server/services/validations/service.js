@@ -1,6 +1,6 @@
 import {check} from 'express-validator';
 
-export const createServiceValidation = [
+export const serviceValidation = [
    check('name')
       .not().isEmpty()
       .isString()

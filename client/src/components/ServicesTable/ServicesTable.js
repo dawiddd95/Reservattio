@@ -29,7 +29,7 @@ const ServicesTable = () => {
          <S.ButtonsWrapper>
             <Popconfirm 
                placement="topLeft" 
-               title='Are you sure to delete marked services ?' 
+               title='Are you sure to delete selected services ?' 
                onConfirm={confirmDelete} 
                okText='Yes' 
                cancelText='No'

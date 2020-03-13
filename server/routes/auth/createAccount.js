@@ -4,11 +4,11 @@ import uuid from 'uuid';
 import bcrypt from 'bcrypt';
 
 import models from '../../db/models';
-import {createAccountValidation} from '../../services/validations/createAccount';
+import {accountValidation} from '../../services/validations/account';
 
 const router = express.Router();
 
-router.post('/api/auth/signup', createAccountValidation , async (req, res) => { 
+router.post('/api/auth/signup', accountValidation , async (req, res) => { 
    const {name, surname, email, password} = req.body;
 
    const key = uuid.v4();

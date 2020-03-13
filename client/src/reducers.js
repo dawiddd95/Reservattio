@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 import servicesReducer from './app/services'; 
+import clientsReducer from './app/clients';
 
 const appReducer = combineReducers({
    servicesReducer,
+   clientsReducer,
 })
 
 // reset redux store

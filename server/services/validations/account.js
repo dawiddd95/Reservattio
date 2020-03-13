@@ -1,6 +1,6 @@
 import {check} from 'express-validator';
 
-export const createAccountValidation = [
+export const accountValidation = [
    check('name')
       .not().isEmpty()
       .isLength({min: 3})

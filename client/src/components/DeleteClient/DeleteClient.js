@@ -5,19 +5,19 @@ import axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import actions from '../../app/services/actions';
+import actions from '../../app/clients/actions';
 
 const useTableAction = () => {
    const dispatch = useDispatch()  
    const [success, setSuccess] = React.useState(false)
 
    const confirmDelete = async id => {
-      const response = await axios.post('/api/user/services/delete', {id: [id]}, {withCredentials: true})
+      const response = await axios.post('/api/user/clients/delete', {id: [id]}, {withCredentials: true})
       const {success} = response.data;
 
       if(success) {
-         dispatch(actions.deleteService([id]))
-         dispatch(actions.deleteSearchService([id]))
+         dispatch(actions.deleteClient([id]))
+         dispatch(actions.deleteSearchClient([id]))
          setSuccess(true)
       }
    }
@@ -27,15 +27,15 @@ const useTableAction = () => {
 
 
 
-const DeleteService = ({id, buttonType}) => {
+const DeleteClient = ({id, buttonType}) => {
    const [success, confirmDelete] = useTableAction()
 
    return (  
       <>
-         {success && <Redirect to='/user/services' />}
+         {success && <Redirect to='/user/clients' />}
          <Popconfirm 
             placement="topLeft" 
-            title='Are you sure to delete this service ?' 
+            title='Are you sure to delete this client ?' 
             onConfirm={() => confirmDelete(id)} 
             okText='Yes' 
             cancelText='No'
@@ -49,4 +49,4 @@ const DeleteService = ({id, buttonType}) => {
    );
 }
  
-export default DeleteService;
+export default DeleteClient;

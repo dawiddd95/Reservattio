@@ -1,11 +1,12 @@
 import express from 'express';
 
 import models from '../../db/models';
+import {serviceValidation} from '../../services/validations/service';
 import checkToken from '../../services/checkToken';
 
 const router = express.Router();
 
-router.post('/api/user/services/:id/edit', checkToken, async (req, res) => { 
+router.post('/api/user/services/:id/edit', serviceValidation, checkToken, async (req, res) => { 
    const {id} = req.params;
    const {name, price, note} = req.body;
 
