@@ -4,6 +4,8 @@ import {PlusOutlined, UploadOutlined, CopyOutlined, FileExcelOutlined} from '@an
 
 import * as S from './StyledButtonsGroup';
 
+import FetchAllClients from '../FetchAllClients/FetchAllClients';
+
 const ButtonsGroup = ({entity, showExportImport}) => {
    return (  
       <S.Wrapper>
@@ -27,11 +29,8 @@ const ButtonsGroup = ({entity, showExportImport}) => {
                Audit Logs
             </Button>
          </S.StyledLink>
-         {showExportImport &&
-            <Button>
-               <FileExcelOutlined />
-               Export to excel
-            </Button>
+         {( showExportImport && entity === 'clients' ) &&
+            <FetchAllClients />
          }
       </S.Wrapper>
    );

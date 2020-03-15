@@ -15,7 +15,7 @@ import deleteClientRoute from './routes/clients/deleteClient'
 import searchClientRoute from './routes/clients/searchClients'
 import fetchClientRoute from './routes/clients/fetchClient'
 import editClientRoute from './routes/clients/editClient'
-
+import importClientsRoute from './routes/clients/importClients'
 import createServiceRoute from './routes/services/createService'
 import deleteServiceRoute from './routes/services/deleteService'
 import fetchServiceRoute from './routes/services/fetchService'
@@ -30,7 +30,6 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
-
 app.use(createAccountRoute)
 app.use(loginManagerRoute)
 app.use(forgotPasswordRoute)
@@ -42,7 +41,7 @@ app.use(deleteClientRoute)
 app.use(searchClientRoute)
 app.use(fetchClientRoute)
 app.use(editClientRoute)
-
+app.use(importClientsRoute)
 app.use(createServiceRoute)
 app.use(deleteServiceRoute)
 app.use(fetchServiceRoute)
