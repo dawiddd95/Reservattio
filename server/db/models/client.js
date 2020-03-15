@@ -4,6 +4,13 @@ module.exports = (sequelize, DataTypes) => {
 		name: DataTypes.STRING,
 		surname: DataTypes.STRING,
 		phone: DataTypes.STRING,
+		accountId: {
+			type: DataTypes.INTEGER,
+			references: {
+			  model: 'Account', 
+			  key: 'id'
+			}
+		},
 		note: DataTypes.STRING
 	}, {});
 	Client.associate = function(models) {

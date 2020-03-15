@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
 		code: DataTypes.STRING
 	}, {});
 	Account.associate = function(models) {
+		Account.hasMany(models.Manager, {
+			foreignKey: 'accountId'  
+		})
 		Account.hasMany(models.Reservation, {
 			foreignKey: 'accountId'  
 		}),
