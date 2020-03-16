@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 
 import {fetchedServicesThunk} from '../../app/services/thunks';
 import {fetchedClientsThunk} from '../../app/clients/thunks';
+import {fetchedManagerThunk} from '../../app/manager/thunks';
 
 
 import AppLayout from '../../layout/AppLayout/AppLayout';
@@ -22,6 +23,7 @@ const useFetch = () => {
          const {fetched} = account.data
 
          if(fetched) {
+            dispatch(fetchedManagerThunk(fetched[0].Managers[0]))
             // dispatch(thunkActions.fetchedServicesThunk(fetched[0].Reservations))
             // dispatch(thunkActions.fetchedServicesThunk(fetched[0].Employees))
             dispatch(fetchedClientsThunk(fetched[0].Clients))
