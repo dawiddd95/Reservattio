@@ -15,6 +15,7 @@ router.get('/api/account/logged-account', checkToken, async (req, res) => {
 
    const account = await models.Account.findAll({
       include: [
+         {model: models.Manager},
          {model: models.Service},
          {model: models.Employee},
          {model: models.Reservation},

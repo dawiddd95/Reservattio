@@ -36,9 +36,6 @@ module.exports = {
       active: {
         type: Sequelize.BOOLEAN
       },
-      type: {
-        type: Sequelize.STRING
-      },
       roles: {
         type: Sequelize.ARRAY(Sequelize.STRING)
       },
