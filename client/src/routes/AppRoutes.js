@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom';
 import ReservationsRoutes from './ReservationsRoutes';
 import ClientsRoutes from './ClientsRoutes';
 import ServicesRoutes from './ServicesRoutes';
+import EmployeesRoutes from './EmployeesRoutes';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 
@@ -13,6 +14,7 @@ const AppRoutes = () => {
          <Route path='/user/reservations' component={ReservationsRoutes} />
          <Route path='/user/clients' component={ClientsRoutes} />
          <Route path='/user/services' component={ServicesRoutes} />
+         <Route path='/user/employees' component={EmployeesRoutes} />
          <Route component={ErrorPage} />
       </Switch>
    )

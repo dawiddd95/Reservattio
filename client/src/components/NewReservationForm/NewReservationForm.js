@@ -113,6 +113,7 @@ const NewReservationForm = () => {
                      name='endTime'
                      type='text'
                   />
+                  {/* Wszystkie te selecty mozna latwo reuzyc, pobieramy w formie ze selectora potrzebne dane i wrzucamy do selecta jako propsy */}
                   <SelectEmployee />
                   <SelectService />
                   <FormInput 

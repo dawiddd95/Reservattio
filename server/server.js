@@ -21,6 +21,7 @@ import deleteServiceRoute from './routes/services/deleteService'
 import fetchServiceRoute from './routes/services/fetchService'
 import editServiceRoute from './routes/services/editService'
 import searchServiceRoute from './routes/services/searchService'
+import createEmployeeRoute from './routes/employees/createEmployee'
 
 dotenv.config();   
 
@@ -47,5 +48,6 @@ app.use(deleteServiceRoute)
 app.use(fetchServiceRoute)
 app.use(editServiceRoute)
 app.use(searchServiceRoute)
+app.use(createEmployeeRoute)
 
 app.listen(5000, () => console.log('Now browse to localhost:5000'))
