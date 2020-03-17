@@ -4,9 +4,8 @@ import * as S from './StyledEmployeesPage';
 
 import Breadcrumb from '../../../components/Breadcrumb/Breadcrumb';
 import ButtonsGroup from '../../../components/ButtonsGroup/ButtonsGroup';
-// import SearchServicesForm from '../../components/SearchServicesForm/SearchServicesForm';
-// import ServicesTable from '../../components/ServicesTable/ServicesTable';
-
+import EmployeesTable from '../../../components/Employees/EmployeesTable/EmployeesTable';
+import SearchEmployeesForm from '../../../components/Employees/SearchEmployeesForm/SearchEmployeesForm';
 
 
 const EmployeesPage = () => {
@@ -24,9 +23,9 @@ const EmployeesPage = () => {
                showExportImport={false}
             />
             <S.StyledCard title='Search Employees'>
-               {/* <SearchServicesForm /> */}
+               <SearchEmployeesForm />
             </S.StyledCard>
-            {/* <ServicesTable /> */}
+            <EmployeesTable />
          </S.StyledCard>
       </S.Wrapper>
    );

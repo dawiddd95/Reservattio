@@ -4,32 +4,30 @@ import { UndoOutlined, DeleteOutlined } from '@ant-design/icons';
 import {useSelector} from 'react-redux';
 
 import * as S from './StyledEmployeesTable';
-//import {useServicesTable} from '../../hooks/useServicesTable';
-
+import {useEmployeesTable} from '../../../hooks/useEmployeesTable';
 import {employeesTableColumns} from '../../../assets/data/employeesTableColumns';
 
 
-
 const EmployeesTable = () => {
-   const [isReloading, selectedRowKeys, showTotal, reloadData, handleChangeRow, confirmDelete] = useServicesTable()
-   const {loading, services, isSearching, searchedServices} = useSelector(state => state.servicesReducer)
+   const [isReloading, selectedRowKeys, showTotal, reloadData, handleChangeRow, confirmDelete] = useEmployeesTable()
+   const {loading, employees, isSearching, searchedEmployees} = useSelector(state => state.employeesReducer)
 
    const data = !isSearching 
-      ?  services.map(service => ({...service, key: service.id}))
-      :  searchedServices.map(service => ({...service, key: service.id}))
+      ?  employees.map(employee => ({...employee, key: employee.id}))
+      :  searchedEmployees.map(employee => ({...employee, key: employee.id}))
    
    const rowSelection = {
       onChange: handleChangeRow,
    }
 
-   const markedItems = services.filter(service => selectedRowKeys.includes(service.id))
-   
+   const markedItems = employees.filter(employee => selectedRowKeys.includes(employee.id))
+
    return (  
       <S.Wrapper>
          <S.ButtonsWrapper>
             <Popconfirm 
                placement="topLeft" 
-               title='Are you sure to delete selected services ?' 
+               title='Are you sure to delete selected employees ?' 
                onConfirm={confirmDelete} 
                okText='Yes' 
                cancelText='No'
@@ -44,21 +42,21 @@ const EmployeesTable = () => {
                <UndoOutlined />
             </Button>
             {!isSearching 
-               ?  <S.P>You now see all Services.</S.P> 
-               :  <S.P>You now see only searched Services. Please click reload button, to see all services again.</S.P>
+               ?  <S.P>You now see all Employees.</S.P> 
+               :  <S.P>You now see only searched Employees. Please click reload button, to see all employees again.</S.P>
             }
          </S.ButtonsWrapper>
          <S.TableWrapper>
             {( markedItems.length > 0 && isSearching ) &&
                <Alert
                   message='Warning'
-                  description={`You have selected ${markedItems.length} items. If you do not see all items, please reload services table to see all selected items.`}
+                  description={`You have selected ${markedItems.length} items. If you do not see all items, please reload employees table to see all selected items.`}
                   type='warning'
                   showIcon
                />
             }
             <Table
-               columns={servicesTableColumns} 
+               columns={employeesTableColumns} 
                dataSource={data} 
                loading={loading}
                pagination={{

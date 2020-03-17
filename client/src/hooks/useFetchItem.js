@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-export const useFetchService = (id) => {
+export const useFetchItem = (url, entity) => {
    const [loading, setLoading] = React.useState(true);
    const [error, setError] = React.useState(false)
    const [data, setData] = React.useState(null)
@@ -13,8 +13,8 @@ export const useFetchService = (id) => {
          setError(false)
 
          try {
-            const response = await axios.get(`/api/user/services/${id}`, {withCredentials: true})
-            setData(response.data.service)
+            const response = await axios.get(url, {withCredentials: true})
+            setData(response.data[entity])
          } catch(error) {
             setError(true)
          }

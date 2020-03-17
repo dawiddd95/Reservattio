@@ -5,7 +5,6 @@ import jwtDecode from 'jwt-decode';
 
 import models from '../../db/models';
 import {employeeValidation} from '../../services/validations/employee';
-import { noSubselectionAllowedMessage } from 'graphql/validation/rules/ScalarLeafs';
 
 const router = express.Router();
 
@@ -24,7 +23,6 @@ router.post('/api/user/employees/new', employeeValidation , async (req, res) => 
    const employee = await models.Employee.findOne({where: {email}})
    if(employee) return res.json({error: 'Email is already in usage', data: null})
 
-
    try {
       const employee = await models.Employee.create({ 
          accountId: id, 
@@ -35,7 +33,7 @@ router.post('/api/user/employees/new', employeeValidation , async (req, res) => 
          password: hashPassword, 
          roles, 
          note, 
-         enable 
+         enable
       })
 
       res.json({ 
@@ -48,7 +46,7 @@ router.post('/api/user/employees/new', employeeValidation , async (req, res) => 
             email, 
             roles, 
             note, 
-            enable, 
+            enable: enable === 'true' ? true : false,
             createdAt: employee.dataValues.createdAt, 
             updatedAt: employee.dataValues.updatedAt 
          }

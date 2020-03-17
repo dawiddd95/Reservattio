@@ -7,6 +7,7 @@ export const reservations = [
 export const employees = [
    {label: 'Access to employees', value: 'employees-access'},
    {label: 'Add and edit employees', value: 'employees-modify'}, 
+   {label: 'Change employee password', value: 'employee-password'},
    {label: 'Delete employees', value: 'employees-delete'},
 ];
 

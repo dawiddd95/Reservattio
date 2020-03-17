@@ -148,7 +148,7 @@ const NewEmployeeForm = () => {
                      <FormTextArea 
                         label='Note'
                         name='note'
-                        placeholder='Note regarding the client'
+                        placeholder='Note regarding the employee'
                      />
                      <FormSwitch 
                         label='Enable Account'

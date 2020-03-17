@@ -8,7 +8,7 @@ const INITIAL_STATE = {
    searchedEmployees: [],
 }
 
-const servicesReducer = (state = INITIAL_STATE, action) => {
+const employeesReducer = (state = INITIAL_STATE, action) => {
    switch(action.type) {
       case types.LOADING_EMPLOYEES: 
          return produce(state, draftState => {
@@ -56,4 +56,4 @@ const servicesReducer = (state = INITIAL_STATE, action) => {
    }
 }
 
-export default servicesReducer;
+export default employeesReducer;

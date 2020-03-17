@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import colors from '../../assets/colors';
+import colors from '../../../assets/colors';
 
 export const Wrapper = styled.div`
    margin: 20px 0 0 0;
