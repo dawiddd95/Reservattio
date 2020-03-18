@@ -7,20 +7,28 @@ import * as S from './StyledSelectRoles';
 const {Option, OptGroup} = Select;
 
 
-const useSelect = () => {
+const useSelect = (initialRoles) => {
    const [selectedItems, setSelectedItems] = React.useState([]);
 
    const handleChange = selectedItems => {
       setSelectedItems(selectedItems)
    };
 
+   React.useEffect(() => {
+      const fetchRoles = () => {
+         setSelectedItems(initialRoles)
+      }
+      fetchRoles()
+   }, [])
+   
+   
    return [selectedItems, handleChange]
 }
 
 
 
-const SelectRoles = ({name}) => {
-   const [selectedItems, handleChange] = useSelect();
+const SelectRoles = ({name, initialRoles}) => {
+   const [selectedItems, handleChange] = useSelect(initialRoles);
 
    return (  
       <S.FieldWrapper>

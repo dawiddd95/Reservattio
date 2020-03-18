@@ -26,6 +26,7 @@ import deleteEmployeeRoute from './routes/employees/deleteEmployee'
 import fetchEmployeeRoute from './routes/employees/fetchEmployee'
 import searchEmployeeRoute from './routes/employees/searchEmployees'
 import changePasswordEmployeeRoute from './routes/employees/changePasswordEmployee'
+import editEmployeeRoute from './routes/employees/editEmployee'
 
 dotenv.config();   
 
@@ -57,5 +58,6 @@ app.use(deleteEmployeeRoute)
 app.use(fetchEmployeeRoute)
 app.use(searchEmployeeRoute)
 app.use(changePasswordEmployeeRoute)
+app.use(editEmployeeRoute)
 
 app.listen(5000, () => console.log('Now browse to localhost:5000'))

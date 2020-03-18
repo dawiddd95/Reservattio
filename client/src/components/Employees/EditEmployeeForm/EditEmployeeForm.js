@@ -9,7 +9,7 @@ import { UndoOutlined, SaveOutlined } from '@ant-design/icons';
 import {useDispatch} from 'react-redux';
 
 import actions from '../../../app/employees/actions';
-import * as S from './StyledNewEmployeeForm';
+import * as S from './StyledEditEmployeeForm';
 
 import FormInput from '../../FormInput/FormInput';
 import FormTextArea from '../../FormTextArea/FormTextArea';
@@ -17,7 +17,7 @@ import SelectRoles from '../../SelectRoles/SelectRoles';
 import FormSwitch from '../../FormSwitch/FormSwitch';
 
 
-const useForm = () => {
+const useForm = (id) => {
    const dispatch = useDispatch();
    const [loading, setLoading] = React.useState(false)
    const [success, setSuccess] = React.useState(false)
@@ -25,11 +25,11 @@ const useForm = () => {
 
    const submitForm = async values => {
       setLoading(true)
-      const response = await axios.post('/api/user/employees/new', values, {withCredentials: true})
+      const response = await axios.post(`/api/user/employees/${id}/edit`, values, {withCredentials: true})
       const {data, error} = response.data;
 
       if(data) {
-         dispatch(actions.addEmployee(data))
+         dispatch(actions.editEmployee(data))
          setSuccess(true)
       } else {
          setErr(error)
@@ -41,12 +41,13 @@ const useForm = () => {
 
 
 
-const NewEmployeeForm = () => {
-   const [loading, success, err, submitForm] = useForm();
+const EditEmployeeForm = ({data}) => {
+   const [loading, success, err, submitForm] = useForm(data.id);
+   const {name, surname, phone, email, roles, note, enable} = data;
 
    return (
       <>
-         {success && <Redirect to='/user/employees' />}
+         {success && <Redirect to={`/user/employees/${data.id}`} />}
          <S.Wrapper> 
             {err && 
                <Alert 
@@ -59,15 +60,13 @@ const NewEmployeeForm = () => {
             }
             <Formik
                initialValues={{
-                  name: '',
-                  surname: '',
-                  phone: '',
-                  email: '',
-                  password: '',
-                  confirmPassword: '',
-                  roles: [],
-                  note: '', 
-                  enable: true,
+                  name,
+                  surname,
+                  phone,
+                  email,
+                  roles,
+                  note, 
+                  enable,
                }}
                validationSchema={Yup.object().shape({
                   name: Yup
@@ -85,17 +84,6 @@ const NewEmployeeForm = () => {
                      .string()
                      .email('Email must be a valid email')
                      .notRequired(),
-                  password: Yup
-                     .string()
-                     .min(8, 'Minimum 8 characters')
-                     .matches(/^(?=.*[A-Z])/, 'Must contain at least one uppercase character')
-                     .matches(/^(?=.*[0-9])/, 'Must contain at least one numeric character')
-                     .matches(/^(?=.*[!@#$%^&*()])/, 'Must contain at least one special character')
-                     .required('Password is required'),
-                  confirmPassword: Yup
-                     .string()
-                     .required('Password must match')
-                     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
                   roles: Yup
                      .array().of(Yup.string())
                      .required('Roles are required'),
@@ -124,7 +112,7 @@ const NewEmployeeForm = () => {
                      />
                      <SelectRoles 
                         name='roles'
-                        initialRoles={[]}
+                        initialRoles={roles}
                      />
                      <FormInput 
                         label='Phone'
@@ -135,16 +123,6 @@ const NewEmployeeForm = () => {
                         label='Email'
                         name='email'
                         type='text'
-                     />
-                     <FormInput 
-                        label='Password'
-                        name='password'
-                        type='password'
-                     />
-                     <FormInput 
-                        label='Confirm Password'
-                        name='confirmPassword'
-                        type='password'
                      />
                      <FormTextArea 
                         label='Note'
@@ -174,4 +152,4 @@ const NewEmployeeForm = () => {
    )
 }
  
-export default NewEmployeeForm;
+export default EditEmployeeForm;

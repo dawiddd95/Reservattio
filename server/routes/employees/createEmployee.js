@@ -4,11 +4,12 @@ import bcrypt from 'bcrypt';
 import jwtDecode from 'jwt-decode';
 
 import models from '../../db/models';
-import {employeeValidation} from '../../services/validations/employee';
+import {createEmployeeValidation} from '../../services/validations/employee';
+import checkToken from '../../services/checkToken';
 
 const router = express.Router();
 
-router.post('/api/user/employees/new', employeeValidation , async (req, res) => { 
+router.post('/api/user/employees/new', createEmployeeValidation, checkToken, async (req, res) => { 
    const {token} = req.cookies;
    const {name, surname, phone, email, password, roles, note, enable} = req.body;
 

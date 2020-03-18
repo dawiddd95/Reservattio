@@ -39,6 +39,9 @@ module.exports = {
       roles: {
         type: Sequelize.ARRAY(Sequelize.STRING)
       },
+      note: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

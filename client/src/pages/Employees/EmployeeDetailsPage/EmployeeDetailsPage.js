@@ -18,7 +18,7 @@ const EmployeeDetailsPage = ({data}) => {
          return role.label
       }
    })
-
+   
    return (  
       <S.Wrapper>
          <Breadcrumb 
