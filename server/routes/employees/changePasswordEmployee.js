@@ -1,5 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
+import {validationResult} from 'express-validator';
 
 import models from '../../db/models';
 import {passwordValidation} from '../../services/validations/password';
@@ -11,6 +12,9 @@ router.post('/api/user/employees/:id/change-password', passwordValidation, check
    const {id} = req.params;
    const {password} = req.body;
    const hashPassword = await bcrypt.hash(password, 10);
+
+   const errors = validationResult(req);
+   if (!errors.isEmpty()) return res.status(422).jsonp(errors.array()); 
 
    try {
       await models.Employee.update({password: hashPassword}, {where: {id} })

@@ -6,10 +6,10 @@ import models from '../../db/models';
 
 const router = express.Router();
 
-router.post('/api/auth/login-employee', loginValidationSchema, async (req, res) => {
-   const {username, password} = req.body;
+router.post('/api/auth/login-employee', async (req, res) => {
+   const {email, password} = req.body;
 
-   const employee = await models.Employee.findOne({where: {username} });
+   const employee = await models.Employee.findOne({where: {email} });
    if(!employee) return res.json({success: false, err: 'Wrong user or password', id: ''});
 
    const passwordIsValid = await bcrypt.compare(password, employee.password);

@@ -4,11 +4,6 @@ import uuid from 'uuid';
 
 import models from '../../db/models';
 import {forgotPasswordValidation} from '../../services/validations/forgotPassword';
-//import {resetPasswordMail, config} from '../../services/mail/mail';
-
-import nodemailer from 'nodemailer';
-
-
 
 const router = express.Router();
 

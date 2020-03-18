@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import models from '../../db/models';
-import {loginManager} from '../../services/validations/loginManager';
 
 const router = express.Router();
 
