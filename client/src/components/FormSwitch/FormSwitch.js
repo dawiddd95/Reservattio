@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './StyledFormSwitch';
 
-const FormSwitch = ({label, name, defaultChecked}) => {
+const FormSwitch = ({label, name, defaultChecked, disabled}) => {
    return (  
       <S.FieldWrapper>
          <S.Label>
@@ -11,6 +11,7 @@ const FormSwitch = ({label, name, defaultChecked}) => {
          <S.StyledSwitch
             name={name} 
             defaultChecked={defaultChecked}
+            disabled={disabled}
          />
       </S.FieldWrapper>
    );

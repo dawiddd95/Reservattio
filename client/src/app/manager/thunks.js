@@ -1,7 +1,8 @@
 import actions from './actions';
 
 export const fetchedManagerThunk = (data) => (dispatch) => {
-   dispatch(actions.addFetchedManager(data))
+   const filterData = data.filter(data => data.type === 'manager')
+   dispatch(actions.addFetchedManager(filterData))
 }
 
 export default {

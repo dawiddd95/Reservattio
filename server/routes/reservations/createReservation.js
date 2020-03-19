@@ -3,12 +3,12 @@ import {validationResult} from 'express-validator';
 import jwtDecode from 'jwt-decode';
 
 import models from '../../db/models';
-import {createReservationValidation} from '../../services/validations/createReservation';
+import {createReservationValidation} from '../../services/validations/reservation';
 import checkToken from '../../services/checkToken';
 
 const router = express.Router();
 
-router.post('/api/user/reservations/new', checkToken, async (req, res) => { 
+router.post('/api/user/reservations/new', createReservationValidation, checkToken, async (req, res) => { 
    const {token} = req.cookies;
    const {date, startTime, endTime, room, status, clientId, employeeId, serviceId, note, cancellationNote} = req.body;
 
@@ -19,7 +19,7 @@ router.post('/api/user/reservations/new', checkToken, async (req, res) => {
    if (!errors.isEmpty()) return res.status(422).jsonp(errors.array());
 
    try {
-      await models.Reservation.create({
+      const reservation = await models.Reservation.create({
          accountId: id,
          date, 
          startTime, 
@@ -33,7 +33,7 @@ router.post('/api/user/reservations/new', checkToken, async (req, res) => {
          cancellationNote,
       })
 
-      res.json({success: true, error: null, successText: 'Sign up success. You can now Login to your account'})
+      res.json({data: reservation, success: true, error: null})
    } catch(err) {
       res.status(400).send(err)
    }

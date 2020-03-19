@@ -1,29 +1,28 @@
 import React from 'react';
 import { Select } from 'formik-antd';
+import { useSelector } from 'react-redux';
 
 import * as S from './StyledSelectClient';
 
 const { Option } = Select;
 
-const fakeClients = [
-   {id: 1212132, name: 'Katarzyna', surname: 'Małek', phone: '735 675 123'},
-   {id: 653, name: 'Kamil', surname: 'Miller', phone: '727 152 763'},
-   {id: 63, name: 'Roksana', surname: 'Mielc', phone: '947 363 937'}
-]
-
-
-const useSelect = () => {
-
-}
 
 const SelectClient = () => {
+   const {clients} = useSelector(state => state.clientsReducer)
+
    return (  
       <S.FieldWrapper>
          <S.Label>
             Client:
          </S.Label>
-         <Select name='clientId'>
-            {fakeClients.map(client =>
+         <Select 
+            name='clientId' 
+            placeholder='You can also input letters to search client'
+            optionFilterProp='children'
+            showSearch
+            filterOption={true}
+         >
+            {clients.map(client =>
                <Option value={client.id} key={client.id}>
                   {client.name} {client.surname} [{client.phone}]
                </Option>

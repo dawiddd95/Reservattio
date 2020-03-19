@@ -10,6 +10,7 @@ import forgotPasswordRoute from './routes/auth/forgotPassword'
 import resetPasswordRoute from './routes/auth/resetPassword'
 import loggedAccountRoute from './routes/account/loggedAccount'
 import createReservationRoute from './routes/reservations/createReservation'
+
 import createClientRoute from './routes/clients/createClient'
 import deleteClientRoute from './routes/clients/deleteClient'
 import searchClientRoute from './routes/clients/searchClients'
@@ -42,6 +43,7 @@ app.use(forgotPasswordRoute)
 app.use(resetPasswordRoute)
 app.use(loggedAccountRoute)
 app.use(createReservationRoute)
+
 app.use(createClientRoute)
 app.use(deleteClientRoute)
 app.use(searchClientRoute)

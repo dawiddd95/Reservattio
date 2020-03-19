@@ -29,7 +29,7 @@ const useForm = (id) => {
       const {data, error} = response.data;
 
       if(data) {
-         dispatch(actions.editEmployee(data))
+         dispatch(actions.addReservation(data))
          setSuccess(true)
       } else {
          setErr(error)
@@ -43,7 +43,7 @@ const useForm = (id) => {
 
 const EditEmployeeForm = ({data}) => {
    const [loading, success, err, submitForm] = useForm(data.id);
-   const {name, surname, phone, email, roles, note, enable} = data;
+   const {name, surname, phone, email, roles, note, enable, type} = data;
 
    return (
       <>
@@ -133,6 +133,7 @@ const EditEmployeeForm = ({data}) => {
                         label='Enable Account'
                         name='enable'
                         defaultChecked={true}
+                        disabled={type === 'manager' ? true : false}
                      />
                      <S.ButtonsWrapper>
                         <SubmitButton loading={loading}>

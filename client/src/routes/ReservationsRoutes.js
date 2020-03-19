@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {Switch, Route} from 'react-router-dom';
 
-import ReservationsPage from '../pages/ReservationsPage/ReservationsPage';
-import ReservationNewPage from '../pages/ReservationNewPage/ReservationNewPage';
-import FetchReservation from '../components/FetchReservation/FetchReservation';
+
+import ReservationsPage from '../pages/Reservations/ReservationsPage/ReservationsPage';
+import ReservationNewPage from '../pages/Reservations/ReservationNewPage/ReservationNewPage';
+import FetchReservation from '../components/Reservations/FetchReservation/FetchReservation';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
- 
 
 const ReservationsRoutes = () => {
    return (  

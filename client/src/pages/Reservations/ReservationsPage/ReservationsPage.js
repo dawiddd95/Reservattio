@@ -1,12 +1,11 @@
 import React from 'react';
 
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
-import ButtonsGroup from '../../components/ButtonsGroup/ButtonsGroup';
-import SearchReservationsForm from '../../components/SearchReservationsForm/SearchReservationsForm';
-import ReservationsTable from '../../components/ReservationsTable/ReservationsTable';
-
 import * as S from './StyledReservationsPage';
 
+import Breadcrumb from '../../../components/Breadcrumb/Breadcrumb';
+import ButtonsGroup from '../../../components/ButtonsGroup/ButtonsGroup';
+import SearchReservationsForm from '../../../components/Reservations/SearchReservationsForm/SearchReservationsForm';
+import ReservationsTable from '../../../components/Reservations/ReservationsTable/ReservationsTable';
 
 const ReservationsPage = () => {
    return (  

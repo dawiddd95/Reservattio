@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 import {Card} from 'antd';
 import {Link} from 'react-router-dom';
 
-import colors from '../../assets/colors';
+import colors from '../../../assets/colors';
 
 export const Wrapper = styled.div`
    margin: 0 25px;

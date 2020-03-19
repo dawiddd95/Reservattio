@@ -1,9 +1,10 @@
 import React from 'react';
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 import * as S from './StyledReservationNewPage';
 
-import NewReservationForm from '../../components/NewReservationForm/NewReservationForm';
+import Breadcrumb from '../../../components/Breadcrumb/Breadcrumb';
+import NewReservationForm from '../../../components/Reservations/NewReservationForm/NewReservationForm';
+
 
 const ReservationNewPage = () => {
    return (  

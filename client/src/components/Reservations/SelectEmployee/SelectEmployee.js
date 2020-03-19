@@ -1,41 +1,39 @@
 import React from 'react';
 import { Select } from 'formik-antd';
+import { useSelector } from 'react-redux';
 
 import * as S from './StyledSelectEmployee';
 
 const { Option, OptGroup } = Select;
 
-const fakeManager = [
-   {id: 16244, name: 'Dawid', surname: 'Łychoński', type: 'Manager'},
-]
-
-const fakeEmployees = [
-   {id: 62735, name: 'Natalia', surname: 'Stąpor', type: 'Employee'},
-   {id: 1345232234, name: 'Justyna', surname: 'Jabłońska', type: 'Employee'}
-]
-
-const useHook = () => {
-
-}
 
 const SelectEmployee = () => {
+   const { manager } = useSelector(state => state.managerReducer)
+   const { employees } = useSelector(state => state.employeesReducer)
+
    return (  
       <S.FieldWrapper>
          <S.Label>
             Employee:
          </S.Label>
-         <Select name='employeeId'>
+         <Select 
+            name='employeeId'
+            placeholder='You can also input letters to search employee'
+            optionFilterProp='children'
+            showSearch
+            filterOption={true}
+         >
             <OptGroup label="Manager">
-               {fakeManager.map(manager => 
+               {manager.map(manager => 
                   <Option value={manager.id} key={manager.id}>
-                     {manager.name} {manager.surname} [{manager.type}]
+                     {manager.name} {manager.surname}
                   </Option>
                )}
             </OptGroup>
             <OptGroup label="Employees">
-               {fakeEmployees.map(employee =>
+               {employees.map(employee =>
                   <Option value={employee.id} key={employee.id}>
-                     {employee.name} {employee.surname} [{employee.type}]
+                     {employee.name} {employee.surname}
                   </Option>
                )}     
             </OptGroup>

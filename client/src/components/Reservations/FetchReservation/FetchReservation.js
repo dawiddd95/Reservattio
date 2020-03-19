@@ -1,5 +1,5 @@
 import React from 'react';
-import ReservationDetailsPage from '../../pages/ReservationDetailsPage/ReservationDetailsPage';
+import ReservationDetailsPage from '../../../pages/Reservations/ReservationDetailsPage/ReservationDetailsPage';
 
 
 const useFetch = () => {

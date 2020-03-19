@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {Button} from 'antd';
 import {EditOutlined, DeleteOutlined, CopyOutlined} from '@ant-design/icons';
 
-import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import Breadcrumb from '../../../components/Breadcrumb/Breadcrumb';
 
 import * as S from './StyledReservationDetailsPage'
 

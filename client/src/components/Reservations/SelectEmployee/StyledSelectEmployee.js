@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {ErrorMessage} from 'formik';
-import colors from '../../assets/colors';
+import colors from '../../../assets/colors';
 
 export const FieldWrapper = styled.div`
    width: 48%;
