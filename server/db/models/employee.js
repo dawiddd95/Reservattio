@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
 		password: DataTypes.STRING,
 		enable: DataTypes.BOOLEAN,
 		roles: DataTypes.ARRAY(DataTypes.STRING),
-		note: DataTypes.STRING
+		note: DataTypes.STRING,
+		type: DataTypes.STRING
 	}, {});
 	Employee.associate = function(models) {
 		Employee.hasMany(models.Reservation, {
