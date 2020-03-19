@@ -23,15 +23,20 @@ router.post('/api/auth/signup', accountValidation , async (req, res) => {
 
 
    try {
-      const accountData = await models.Account.create({ email, password: hashPassword, key, code})
+      const accountData = await models.Account.create({ email, password: hashPassword, key, code })
       const {id} = accountData.dataValues
 
-      await models.Manager.create({
+      await models.Employee.create({
          name, 
          surname, 
          accountId: id, 
          phone: '', 
          email, 
+         password: hashPassword,
+         enable: false,
+         roles: ['all'],
+         note: 'Only read',
+         type: 'manager'
       })
 
       res.json({success: true, error: null, successText: 'Sign up success. You can now Login to your account'})
