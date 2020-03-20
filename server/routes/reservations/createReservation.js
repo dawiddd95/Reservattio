@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post('/api/user/reservations/new', createReservationValidation, checkToken, async (req, res) => { 
    const {token} = req.cookies;
-   const {date, startTime, endTime, room, status, clientId, employeeId, serviceId, note, cancellationNote} = req.body;
+   const {date, room, status, clientId, employeeId, serviceId, note, cancellationNote} = req.body;
 
    const decodedToken = jwtDecode(token);
    const {id} = decodedToken;
@@ -22,8 +22,6 @@ router.post('/api/user/reservations/new', createReservationValidation, checkToke
       const reservation = await models.Reservation.create({
          accountId: id,
          date, 
-         startTime, 
-         endTime,
          room,
          status,
          clientId,

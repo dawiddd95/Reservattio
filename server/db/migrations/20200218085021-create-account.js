@@ -8,11 +8,20 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      name: {
+        type: Sequelize.STRING
+      },
+      surname: {
+        type: Sequelize.STRING
+      },
       key: {
         type: Sequelize.STRING
       },
       code: {
         type: Sequelize.STRING
+      },
+      roles: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       createdAt: {
         allowNull: false,
