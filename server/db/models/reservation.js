@@ -3,8 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const Reservation = sequelize.define('Reservation', {
     date: DataTypes.ARRAY(DataTypes.STRING),
     room: DataTypes.STRING,
-    startTime: DataTypes.STRING,
-    endTime: DataTypes.STRING,
     accountId: DataTypes.INTEGER,
     employeeId: DataTypes.INTEGER,
     serviceId: DataTypes.INTEGER,

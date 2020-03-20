@@ -14,12 +14,6 @@ module.exports = {
       room: {
         type: Sequelize.STRING
       },
-      startTime: {
-        type: Sequelize.STRING
-      },
-      endTime: {
-        type: Sequelize.STRING
-      },
       status: {
         defaultValue: 'Reserved',
         type: Sequelize.ENUM,
