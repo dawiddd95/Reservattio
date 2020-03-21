@@ -5,7 +5,9 @@ import {Switch, Route} from 'react-router-dom';
 import ReservationsPage from '../pages/Reservations/ReservationsPage/ReservationsPage';
 import ReservationNewPage from '../pages/Reservations/ReservationNewPage/ReservationNewPage';
 import FetchReservation from '../components/Reservations/FetchReservation/FetchReservation';
+import FetchReservationToEdit from '../components/Reservations/FetchReservationToEdit/FetchReservationToEdit';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
+
 
 const ReservationsRoutes = () => {
    return (  
@@ -13,6 +15,7 @@ const ReservationsRoutes = () => {
          <Route exact path='/user/reservations' component={ReservationsPage} /> 
          <Route exact path='/user/reservations/new' component={ReservationNewPage} /> 
          <Route exact path='/user/reservations/:id' component={FetchReservation} />
+         <Route exact path='/user/reservations/:id/edit' component={FetchReservationToEdit} />
          <Route component={ErrorPage} />
       </Switch>
    )

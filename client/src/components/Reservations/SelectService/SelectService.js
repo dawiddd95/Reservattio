@@ -7,7 +7,7 @@ import * as S from './StyledSelectService';
 const { Option } = Select;
 
 
-const SelectService = () => {
+const SelectService = ({name}) => {
    const { services } = useSelector(state => state.servicesReducer);
 
    return (  
@@ -16,11 +16,12 @@ const SelectService = () => {
             Service:
          </S.Label>
          <Select 
-            name='serviceId'
+            name={name}
             placeholder='You can also input letters to search service'
             optionFilterProp='children'
             showSearch
             filterOption={true}
+            allowClear={true}
          >
             {services.map(service =>
                <Option value={service.id} key={service.id}>
@@ -29,7 +30,7 @@ const SelectService = () => {
             )}     
          </Select>
          <S.StyledErrorMessage 
-            name='service' 
+            name={name} 
             component='p' 
          />
       </S.FieldWrapper>

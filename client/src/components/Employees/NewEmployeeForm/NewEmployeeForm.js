@@ -84,7 +84,7 @@ const NewEmployeeForm = () => {
                   email: Yup
                      .string()
                      .email('Email must be a valid email')
-                     .notRequired(),
+                     .required('Email is required'),
                   password: Yup
                      .string()
                      .min(8, 'Minimum 8 characters')

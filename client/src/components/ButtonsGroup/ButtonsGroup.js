@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button} from 'antd';
-import {PlusOutlined, UploadOutlined, CopyOutlined, FileExcelOutlined} from '@ant-design/icons';
+import {PlusOutlined, UploadOutlined, CopyOutlined} from '@ant-design/icons';
 
 import * as S from './StyledButtonsGroup';
 
-import FetchAllClients from '../FetchAllClients/FetchAllClients';
+import ExportToExcel from '../ExportToExcel/ExportToExcel';
 
-const ButtonsGroup = ({entity, showExportImport}) => {
+const ButtonsGroup = ({entity, showImport, showExport}) => {
    return (  
       <S.Wrapper>
          <S.StyledLink to={`/user/${entity}/new`}>
@@ -15,7 +15,7 @@ const ButtonsGroup = ({entity, showExportImport}) => {
                New
             </Button>
          </S.StyledLink>
-         {showExportImport &&
+         {showImport &&
             <S.StyledLink to={`/user/${entity}/import`}>
                <Button type='primary'>
                   <UploadOutlined />
@@ -29,8 +29,10 @@ const ButtonsGroup = ({entity, showExportImport}) => {
                Audit Logs
             </Button>
          </S.StyledLink>
-         {( showExportImport && entity === 'clients' ) &&
-            <FetchAllClients />
+         {showExport &&
+            <ExportToExcel 
+               entity={entity}
+            />
          }
       </S.Wrapper>
    );

@@ -1,8 +1,7 @@
 import actions from './actions';
 
 export const fetchedEmployeesThunk = (data) => (dispatch) => {
-   const filterData = data.filter(data => data.type !== 'manager')
-   dispatch(actions.addFetchedEmployees(filterData))
+   dispatch(actions.addFetchedEmployees(data))
 }
 
 export default {

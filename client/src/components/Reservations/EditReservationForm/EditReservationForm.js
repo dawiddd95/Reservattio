@@ -10,7 +10,7 @@ import moment from 'moment';
 import {useDispatch} from 'react-redux';
 
 import actions from '../../../app/reservations/actions';
-import * as S from './StyledNewReservationForm';
+import * as S from './StyledEditReservationForm';
 
 import SelectClient from '../SelectClient/SelectClient';
 import RangeDatePicker from '../RangeDatePicker/RangeDatePicker';
@@ -20,8 +20,8 @@ import FormInput from '../../FormInput/FormInput';
 import SelectStatus from '../SelectStatus/SelectStatus';
 import FormTextArea from '../../FormTextArea/FormTextArea';
 
-
-const useForm = () => {
+// Wiekszosc moza reuzyc z tworzeniem
+const useForm = (id) => {
    const dispatch = useDispatch();
    const [loading, setLoading] = React.useState(false)
    const [success, setSuccess] = React.useState(false)
@@ -37,11 +37,11 @@ const useForm = () => {
 
       const formValues = {...values, date}
 
-      const response = await axios.post('/api/user/reservations/new', formValues, {withCredentials: true})
+      const response = await axios.post(`/api/user/reservations/${id}/edit`, formValues, {withCredentials: true})
       const {data, error} = response.data;
 
       if(data) {
-         dispatch(actions.addReservation(data))
+         dispatch(actions.editReservation(data))
          setSuccess(true)
       } else {
          setErr(error)
@@ -53,12 +53,13 @@ const useForm = () => {
 
 
 
-const NewReservationForm = () => {
-   const [loading, success, err, submitForm] = useForm();
+const EditReservationForm = ({data}) => {
+   const [loading, success, err, submitForm] = useForm(data.id);
+   const {arrival, departure, room, status, clientId, employeeId, serviceId, note, cancellationNote} = data;
 
    return (
       <>
-         {success && <Redirect to={`/user/reservations`} />}
+         {success && <Redirect to={`/user/reservations/${data.id}`} />}
          <S.Wrapper> 
             {err && 
                <Alert 
@@ -71,14 +72,14 @@ const NewReservationForm = () => {
             }
             <Formik
                initialValues={{
-                  date: [], 
-                  room: '', 
-                  status: '',
-                  clientId: '',
-                  employeeId: '',
-                  serviceId: '',
-                  note: '', 
-                  cancellationNote: '',
+                  date: [moment(arrival), moment(departure)], 
+                  room, 
+                  status,
+                  clientId,
+                  employeeId,
+                  serviceId,
+                  note, 
+                  cancellationNote,
                }}
                validationSchema={Yup.object().shape({
                   date: Yup
@@ -151,4 +152,4 @@ const NewReservationForm = () => {
    )
 }
  
-export default NewReservationForm;
+export default EditReservationForm;

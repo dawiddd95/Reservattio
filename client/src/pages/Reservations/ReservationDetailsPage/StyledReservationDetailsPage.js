@@ -45,43 +45,13 @@ export const Label = styled.div`
 export const StyledLink = styled(Link)`
    margin: 0 0 0 15px;
    font-weight: 600;
-
-   &:hover {
-      text-decoration: underline;
-   }
 `
 
 export const Value = styled.div`
    width: 65%;
    margin: 0 0 0 15px;
-   font-weight: 600;
+   font-weight: ${({font_light}) => font_light ? 400 : 600};
    text-align: left;
-`
-
-export const Status = styled.button`
-   height: 25px;
-   padding: 0 7px;
-   border-radius: 4px;
-   color: white;
-   font-size: 12px;
-   font-family: Arial;
-   outline: 0;
-   border: 0;
-
-   ${({status_style}) => status_style === 'Cancelled' && css`
-      background-color: #FF6D25;
-   `}
-   ${({status_style}) => status_style === 'Reserved' && css`
-      background-color: ${colors.primary};
-   `}
-   ${({status_style}) => status_style === 'In Progress' && css`
-      background-color: #99D57D;
-   `}
-   ${({status_style}) => status_style === 'Completed' && css`
-      background-color: ${colors.disable};
-      border: 1px solid ${colors.silverColor};
-      color: black;
-   `}
 `
 
 export const NoData = styled.span`

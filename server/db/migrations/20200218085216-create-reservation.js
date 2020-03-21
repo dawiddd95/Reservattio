@@ -8,8 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      date: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+      arrival: {
+        type: Sequelize.STRING
+      },
+      departure: {
+        type: Sequelize.STRING
       },
       room: {
         type: Sequelize.STRING

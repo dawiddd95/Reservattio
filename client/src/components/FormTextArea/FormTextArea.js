@@ -12,7 +12,7 @@ const FormTextArea = ({label, name, placeholder}) => {
          <S.Label>
             {label}:
          </S.Label>
-         <TextArea name={name} placeholder={placeholder} rows={4} autoSize={true}/>
+         <TextArea name={name} placeholder={placeholder} rows={4} autoSize={true} />
       </S.FieldWrapper>
    );
 }

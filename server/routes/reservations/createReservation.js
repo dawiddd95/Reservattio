@@ -3,14 +3,15 @@ import {validationResult} from 'express-validator';
 import jwtDecode from 'jwt-decode';
 
 import models from '../../db/models';
-import {createReservationValidation} from '../../services/validations/reservation';
+import {reservationValidation} from '../../services/validations/reservation';
 import checkToken from '../../services/checkToken';
 
 const router = express.Router();
 
-router.post('/api/user/reservations/new', createReservationValidation, checkToken, async (req, res) => { 
+router.post('/api/user/reservations/new', reservationValidation, checkToken, async (req, res) => { 
    const {token} = req.cookies;
    const {date, room, status, clientId, employeeId, serviceId, note, cancellationNote} = req.body;
+   const [arrival, departure] = date;
 
    const decodedToken = jwtDecode(token);
    const {id} = decodedToken;
@@ -21,7 +22,8 @@ router.post('/api/user/reservations/new', createReservationValidation, checkToke
    try {
       const reservation = await models.Reservation.create({
          accountId: id,
-         date, 
+         arrival,
+         departure, 
          room,
          status,
          clientId,

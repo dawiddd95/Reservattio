@@ -20,7 +20,8 @@ const ClientsPage = () => {
          <S.StyledCard title='Clients' bordered>
             <ButtonsGroup 
                entity='clients'
-               showExportImport={true}
+               showImport={true}
+               showExport={true}
             />
             <S.StyledCard title='Search Clients' margin_style='true'>
                <SearchClientsForm />

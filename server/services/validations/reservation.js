@@ -1,6 +1,6 @@
 import {check} from 'express-validator';
 
-export const createReservationValidation = [
+export const reservationValidation = [
    check('clientId')
       .not().isEmpty()
       .isNumeric()
@@ -23,16 +23,6 @@ export const createReservationValidation = [
       .not().isEmpty()
       .isNumeric()
       .withMessage('Service is required')
-      .escape(),
-   check('startTime')
-      .not().isEmpty()
-      .isString()
-      .withMessage('Start time is required')
-      .escape(),
-   check('endTime')
-      .not().isEmpty()
-      .isString()
-      .withMessage('End time is required')
       .escape(),
    check('note')
       .optional()

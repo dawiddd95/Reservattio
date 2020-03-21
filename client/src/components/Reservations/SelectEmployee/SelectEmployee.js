@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux';
 
 import * as S from './StyledSelectEmployee';
 
-const { Option, OptGroup } = Select;
+const { Option } = Select;
 
 
-const SelectEmployee = () => {
-   const { manager } = useSelector(state => state.managerReducer)
+const SelectEmployee = ({name}) => {
    const { employees } = useSelector(state => state.employeesReducer)
 
    return (  
@@ -17,29 +16,21 @@ const SelectEmployee = () => {
             Employee:
          </S.Label>
          <Select 
-            name='employeeId'
+            name={name}
             placeholder='You can also input letters to search employee'
             optionFilterProp='children'
             showSearch
             filterOption={true}
+            allowClear={true}
          >
-            <OptGroup label="Manager">
-               {manager.map(manager => 
-                  <Option value={manager.id} key={manager.id}>
-                     {manager.name} {manager.surname}
-                  </Option>
-               )}
-            </OptGroup>
-            <OptGroup label="Employees">
-               {employees.map(employee =>
-                  <Option value={employee.id} key={employee.id}>
-                     {employee.name} {employee.surname}
-                  </Option>
-               )}     
-            </OptGroup>
+            {employees.map(employee =>
+               <Option value={employee.id} key={employee.id}>
+                  {employee.name} {employee.surname}
+               </Option>
+            )}     
          </Select>
          <S.StyledErrorMessage 
-            name='employee' 
+            name={name}
             component='p' 
          />
       </S.FieldWrapper>

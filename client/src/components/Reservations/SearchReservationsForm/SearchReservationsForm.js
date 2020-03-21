@@ -1,59 +1,55 @@
 import React from 'react';
+import axios from 'axios';
 import {Formik} from 'formik';
-import { Input, ResetButton, SubmitButton, Select as FormSelect, DatePicker} from 'formik-antd';
-import { Select } from 'antd';
+import * as Yup from 'yup';
+import {useDispatch, useSelector} from 'react-redux';
+import {ResetButton, SubmitButton} from 'formik-antd';
 import { UndoOutlined, SearchOutlined } from '@ant-design/icons';
 import moment from 'moment';
 
 import * as S from './StyledSearchReservationsForm';
+import actions from '../../../app/reservations/actions';
+
 import SelectClient from '../SelectClient/SelectClient';
+import RangeDatePicker from '../RangeDatePicker/RangeDatePicker';
+import SelectEmployee from '../SelectEmployee/SelectEmployee';
+import SelectService from '../SelectService/SelectService';
+import FormInput from '../../FormInput/FormInput';
+import SelectStatus from '../SelectStatus/SelectStatus';
 
-const { Option, OptGroup } = Select;
-const { RangePicker } = DatePicker;
-
-
-const fakeEmployees = [
-   {id: 62735, name: 'Natalia', surname: 'Stąpor', type: 'Employee'},
-   {id: 1345232234, name: 'Justyna', surname: 'Jabłońska', type: 'Employee'}
-]
-
-const fakeManager = [
-   {id: 16244, name: 'Dawid', surname: 'Łychoński', type: 'Manager'},
-]
-
-const fakeServices = [
-   {id: 257, name: 'Diagnoza'},
-   {id: 2354, name: 'Fizjoterapia'},
-   {id: 234, name: 'Masaż'}
-]
-
-const fakeClients = [
-   {id: 1212132, name: 'Katarzyna', surname: 'Małek', phone: '735 675 123'},
-   {id: 653, name: 'Kamil', surname: 'Miller', phone: '727 152 763'},
-   {id: 63, name: 'Roksana', surname: 'Mielc', phone: '947 363 937'}
-]
-
-
-// ////////////////////////////////////////////////////////////////////////////////
 
 const useForm = () => {
-   const submitForm = values => {
-      const formValues = {
-         ...values, 
-         date: [
-            moment(values.date[0]._d).format('YYYY-MM-DD'), 
-            moment(values.date[1]._d).format('YYYY-MM-DD')
-         ]
-      }
+   const dispatch = useDispatch();
 
-      console.log(formValues)
+   const submitForm = async values => {
+      dispatch(actions.loadingReservations(true))
+
+      const date = values.date !== undefined
+         ? 
+            [
+               moment(values.date[0]._d).format('YYYY-MM-DD HH:mm'), 
+               moment(values.date[1]._d).format('YYYY-MM-DD HH:mm')
+            ]
+         :  undefined
+
+      const formValues = {...values, date}
+
+      const response = await axios.post('/api/user/reservations/search', formValues, {withCredentials: true})
+      const {data} = response.data;
+
+      if(data) dispatch(actions.searchReservations(data))
+
+      dispatch(actions.loadingReservations(false))
+      dispatch(actions.isSearchingReservations(true))
    }
 
    return [submitForm]
 }
 
 
+
 const SearchReservationsForm = () => {
+   const {loading} = useSelector(state => state.reservationsReducer)
    const [submitForm] = useForm();
   
    return (
@@ -61,97 +57,63 @@ const SearchReservationsForm = () => {
          <Formik
             initialValues={{
                id: '', 
-               date: '', 
+               date: undefined, 
                room: '', 
-               status: '',
-               client: '',
-               employee: '',
-               service: '',
+               status: undefined,
+               clientId: undefined,
+               employeeId: undefined,
+               serviceId: undefined,
             }}
+            validationSchema={Yup.object().shape({
+               date: Yup
+                  .array()
+                  .notRequired(),
+               room: Yup
+                  .string()
+                  .notRequired(),
+               status: Yup
+                  .string()
+                  .oneOf(['Reserved', 'In Progress', 'Cancelled', 'Completed'], 'Must be correct value')
+                  .notRequired(),
+               clientId: Yup
+                  .string()
+                  .notRequired(),
+               employeeId: Yup
+                  .string()
+                  .notRequired(),
+               serviceId: Yup
+                  .string()
+                  .notRequired(),
+            })}
             onSubmit={values => {      
                submitForm(values)   
             }}
          >
             {({handleSubmit}) => (
                <S.StyledForm onSubmit={handleSubmit}>
-                  <S.FieldWrapper>
-                     <S.Label>
-                        Id:
-                     </S.Label>
-                     <Input 
-                        name='id' 
-                        type='text' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.Label>
-                        Employee:
-                     </S.Label>
-                     <FormSelect name='employee'>
-                        <OptGroup label="Manager">
-                           {fakeManager.map(manager => 
-                              <Option value={manager.id} key={manager.id}>
-                                 {manager.name} {manager.surname} [{manager.type}]
-                              </Option>
-                           )}
-                        </OptGroup>
-                        <OptGroup label="Employees">
-                           {fakeEmployees.map(employee =>
-                              <Option value={employee.id} key={employee.id}>
-                                 {employee.name} {employee.surname} [{employee.type}]
-                              </Option>
-                           )}     
-                        </OptGroup>
-                     </FormSelect>
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.Label>
-                        Status:
-                     </S.Label>
-                     <FormSelect name='status'>
-                        <Option value='Reserved'>Reserved</Option>
-                        <Option value='In Progress'>In Progress</Option>
-                        <Option value='Cancelled'>Cancelled</Option>
-                        <Option value='Completed'>Completed</Option>
-                     </FormSelect>
-                  </S.FieldWrapper>
-                  <SelectClient />
-                  <S.FieldWrapper>
-                     <S.Label>
-                        Room:
-                     </S.Label>
-                     <Input 
-                        name='room' 
-                        type='text' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.Label>
-                        Service:
-                     </S.Label>
-                     <FormSelect name='service'>
-                        {fakeServices.map(service =>
-                           <Option value={service.id} key={service.id}>
-                              {service.name}
-                           </Option>
-                        )}     
-                     </FormSelect>
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.Label>
-                        Period:
-                     </S.Label>
-                     <RangePicker name='date' />
-                  </S.FieldWrapper>
+                  <FormInput 
+                     label='Id'
+                     name='id'
+                     type='text'
+                  />
+                  <SelectEmployee name='employeeId' />
+                  <RangeDatePicker name='date' label='Arrival' />
+                  <SelectClient name='clientId' />
+                  <FormInput 
+                     label='Room'
+                     name='room'
+                     type='text'
+                  />
+                  <SelectService name='serviceId' />
+                  <SelectStatus name='status' />
                   <S.ButtonsWrapper>
-                     <SubmitButton>  
-                        {/* loading={loading}> */}
-                        <SearchOutlined />
+                     <SubmitButton loading={loading}>
                         Search
+                        <SearchOutlined />
                      </SubmitButton>
                      <ResetButton>
-                        <UndoOutlined />
                         Reset
+                        <UndoOutlined />
                      </ResetButton>
                   </S.ButtonsWrapper>
                </S.StyledForm>

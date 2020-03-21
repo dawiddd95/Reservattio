@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import {useDispatch} from 'react-redux';
 
-import {fetchedManagerThunk} from '../../app/manager/thunks';
 import {fetchedServicesThunk} from '../../app/services/thunks';
 import {fetchedClientsThunk} from '../../app/clients/thunks';
 import {fetchedEmployeesThunk} from '../../app/employees/thunks';
@@ -25,7 +24,6 @@ const useFetch = () => {
          const {fetched} = account.data
 
          if(fetched) {
-            dispatch(fetchedManagerThunk(fetched[0].Employees))
             dispatch(fetchedReservationsThunk(fetched[0].Reservations))
             dispatch(fetchedEmployeesThunk(fetched[0].Employees))
             dispatch(fetchedClientsThunk(fetched[0].Clients))

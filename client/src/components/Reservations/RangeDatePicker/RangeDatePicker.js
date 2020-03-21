@@ -5,15 +5,20 @@ import * as S from './StyledRangeDatePicker';
 
 const { RangePicker } = DatePicker;
 
-const RangeDatePicker = () => {
+const RangeDatePicker = ({name, label}) => {
    return (  
       <S.FieldWrapper>
          <S.Label>
-            Period:
+            {label}:
          </S.Label>
-         <RangePicker name='date' />
+         <RangePicker 
+            name={name} 
+            showTime={{ format: 'HH:mm' }}
+            format="YYYY-MM-DD HH:mm"
+            style={{'width': '100%'}}   
+         />
          <S.StyledErrorMessage 
-            name='date' 
+            name={name}
             component='p' 
          />
       </S.FieldWrapper>

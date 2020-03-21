@@ -7,7 +7,7 @@ import * as S from './StyledSelectClient';
 const { Option } = Select;
 
 
-const SelectClient = () => {
+const SelectClient = ({name}) => {
    const {clients} = useSelector(state => state.clientsReducer)
 
    return (  
@@ -16,11 +16,12 @@ const SelectClient = () => {
             Client:
          </S.Label>
          <Select 
-            name='clientId' 
+            name={name}
             placeholder='You can also input letters to search client'
             optionFilterProp='children'
             showSearch
             filterOption={true}
+            allowClear={true}
          >
             {clients.map(client =>
                <Option value={client.id} key={client.id}>
@@ -29,7 +30,7 @@ const SelectClient = () => {
             )}     
          </Select>
          <S.StyledErrorMessage 
-            name='client' 
+            name={name}
             component='p' 
          />
       </S.FieldWrapper>
