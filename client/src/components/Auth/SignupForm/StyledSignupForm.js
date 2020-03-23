@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {ErrorMessage} from 'formik';
 import { Input } from 'formik-antd'
-import colors from '../../assets/colors';
+import colors from '../../../assets/colors';
 
 export const Wrapper = styled.div`
    width: 85%;

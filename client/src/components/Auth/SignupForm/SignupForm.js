@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import { Form, SubmitButton } from 'formik-antd';
 
 import * as S from './StyledSignupForm';
-import {useAuthForm} from '../../hooks/useAuthForm';
+import {useAuthForm} from '../../../hooks/useAuthForm';
 
-import FormAlert from '../FormAlert/FormAlert';
+import FormAlert from '../../FormAlert/FormAlert';
 
 
 const SignupForm = () => {
