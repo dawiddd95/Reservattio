@@ -32,6 +32,10 @@ const deleteSearchEmployee = item => ({
    type: types.DELETE_SEARCH_EMPLOYEE, item
 })
 
+const editSearchEmployee = item => ({
+   type: types.EDIT_SEARCH_EMPLOYEE, item
+})
+
 export default {
    loadingEmployees,
    addFetchedEmployees,
@@ -40,5 +44,6 @@ export default {
    deleteEmployee,
    isSearchingEmployees,
    searchEmployees,
-   deleteSearchEmployee
+   deleteSearchEmployee,
+   editSearchEmployee
 }

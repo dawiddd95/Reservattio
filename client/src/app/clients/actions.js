@@ -32,6 +32,11 @@ const deleteSearchClient = item => ({
    type: types.DELETE_SEARCH_CLIENT, item
 })
 
+const editSearchClient = item => ({
+   type: types.EDIT_SEARCH_CLIENT, item
+})
+
+
 const importClients = item => ({
    type: types.IMPORT_CLIENTS, item
 })
@@ -45,5 +50,6 @@ export default {
    isSearchingClients,
    searchClients,
    deleteSearchClient,
+   editSearchClient,
    importClients
 }

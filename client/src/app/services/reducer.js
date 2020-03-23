@@ -50,6 +50,12 @@ const servicesReducer = (state = INITIAL_STATE, action) => {
          return produce(state, draftState => {
             draftState.searchedServices = draftState.searchedServices.filter(service => !action.item.includes(service.id))
          })
+      
+      case types.EDIT_SEARCH_SERVICE:
+         return produce(state, draftState => {
+            draftState.searchedServices = draftState.searchedServices.filter(service => service.id !== action.item.id)
+            draftState.searchedServices = draftState.searchedServices.concat(action.item)
+         })
        
       default:
          return state;

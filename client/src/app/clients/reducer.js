@@ -51,6 +51,12 @@ const clientsReducer = (state = INITIAL_STATE, action) => {
             draftState.searchedClients = draftState.searchedClients.filter(client => !action.item.includes(client.id))
          })
 
+      case types.EDIT_SEARCH_CLIENT:
+         return produce(state, draftState => {
+            draftState.searchedClients = draftState.searchedClients.filter(client => client.id !== action.item.id)
+            draftState.searchedClients = draftState.searchedClients.concat(action.item)
+         })
+
       case types.IMPORT_CLIENTS:
          return produce(state, draftState => {
             draftState.clients = draftState.clients.concat(action.item)

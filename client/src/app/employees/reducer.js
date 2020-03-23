@@ -50,6 +50,12 @@ const employeesReducer = (state = INITIAL_STATE, action) => {
          return produce(state, draftState => {
             draftState.searchedEmployees = draftState.searchedEmployees.filter(employee => !action.item.includes(employee.id))
          })
+
+      case types.EDIT_SEARCH_EMPLOYEE:
+         return produce(state, draftState => {
+            draftState.searchedEmployees = draftState.searchedEmployees.filter(employee => employee.id !== action.item.id)
+            draftState.searchedEmployees = draftState.searchedEmployees.concat(action.item)
+         })
        
       default:
          return state;

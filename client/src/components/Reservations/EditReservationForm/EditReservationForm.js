@@ -42,6 +42,7 @@ const useForm = (id) => {
 
       if(data) {
          dispatch(actions.editReservation(data))
+         dispatch(actions.editSearchReservation(data))
          setSuccess(true)
       } else {
          setErr(error)

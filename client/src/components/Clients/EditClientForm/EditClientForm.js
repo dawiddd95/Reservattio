@@ -27,6 +27,7 @@ const useForm = (id) => {
 
       if(data) {
          dispatch(actions.editClient(data))
+         dispatch(actions.editSearchClient(data))
          setSuccess(true)
       }
 

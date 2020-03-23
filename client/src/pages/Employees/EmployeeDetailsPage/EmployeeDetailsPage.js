@@ -76,6 +76,15 @@ const EmployeeDetailsPage = ({data}) => {
                   </S.Value>
                </S.Item>
                <S.Item>
+                  <S.Label>Enable:</S.Label>
+                  <S.Value>
+                     {data.enable
+                        ?  <Tag color="green">Yes</Tag>
+                        :  <Tag color="magenta">No</Tag>
+                     }
+                  </S.Value>
+               </S.Item>
+               <S.Item>
                   <S.Label>Roles:</S.Label>
                   <S.Value>
                      {employeeRoles.map(role => <S.StyledTag color='blue'>{role}</S.StyledTag>)}

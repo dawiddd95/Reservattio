@@ -27,6 +27,7 @@ const useForm = (id) => {
 
       if(data) {
          dispatch(actions.editService(data))
+         dispatch(actions.editSearchService(data))
          setSuccess(true)
       }
 

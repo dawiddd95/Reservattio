@@ -32,6 +32,10 @@ const deleteSearchReservation = item => ({
    type: types.DELETE_SEARCH_RESERVATION, item
 })
 
+const editSearchReservation = item => ({
+   type: types.EDIT_SEARCH_RESERVATION, item
+})
+
 
 export default {
    loadingReservations,
@@ -42,4 +46,5 @@ export default {
    isSearchingReservations,
    searchReservations,
    deleteSearchReservation,
+   editSearchReservation
 }

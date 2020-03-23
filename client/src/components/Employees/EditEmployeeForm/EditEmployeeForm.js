@@ -30,6 +30,7 @@ const useForm = (id) => {
 
       if(data) {
          dispatch(actions.editEmployee(data))
+         dispatch(actions.editSearchEmployee(data))
          setSuccess(true)
       } else {
          setErr(error)

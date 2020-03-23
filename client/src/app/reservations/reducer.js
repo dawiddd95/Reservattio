@@ -52,6 +52,12 @@ const reservationsReducer = (state = INITIAL_STATE, action) => {
             draftState.searchedReservations = draftState.searchedReservations.filter(reservation => 
                !action.item.includes(reservation.id))
          })
+
+         case types.EDIT_SEARCH_RESERVATION:
+            return produce(state, draftState => {
+               draftState.searchedReservations = draftState.searchedReservations.filter(reservation => reservation.id !== action.item.id)
+               draftState.searchedReservations = draftState.searchedReservations.concat(action.item)
+            })
        
       default:
          return state;
