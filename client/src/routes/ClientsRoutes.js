@@ -1,11 +1,11 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 
-import ClientsPage from '../pages/ClientsPage/ClientsPage';
-import ClientNewPage from '../pages/ClientNewPage/ClientNewPage';
-import ImportClientsPage from '../pages/ImportClientsPage/ImportClientsPage';
-import FetchClient from '../components/FetchClient/FetchClient';
-import FetchClientToEdit from '../components/FetchClientToEdit/FetchClientToEdit';
+import ClientsPage from '../pages/Clients/ClientsPage/ClientsPage';
+import ClientNewPage from '../pages/Clients/ClientNewPage/ClientNewPage';
+import ImportClientsPage from '../pages/Clients/ImportClientsPage/ImportClientsPage';
+import FetchClient from '../components/Clients/FetchClient/FetchClient';
+import FetchClientToEdit from '../components/Clients/FetchClientToEdit/FetchClientToEdit';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 const ClientsRoutes = () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import * as S from '../../components/ServicesTable/StyledServicesTable';
+import * as S from '../../components/Services/ServicesTable/StyledServicesTable';
 
-import DeleteService from '../../components/DeleteService/DeleteService';
+import DeleteService from '../../components/Services/DeleteService/DeleteService';
 
 export const servicesTableColumns = [
    {  

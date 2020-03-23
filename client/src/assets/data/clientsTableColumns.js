@@ -1,8 +1,8 @@
 import React from 'react';
 
-import * as S from '../../components/ClientsTable/StyledClientsTable';
+import * as S from '../../components/Clients/ClientsTable/StyledClientsTable';
 
-import DeleteClient from '../../components/DeleteClient/DeleteClient';
+import DeleteClient from '../../components/Clients/DeleteClient/DeleteClient';
 
 export const clientsTableColumns = [
    {  

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Switch, Route} from 'react-router-dom';
 
-import ServicesPage from '../pages/ServicesPage/ServicesPage';
-import ServiceNewPage from '../pages/ServiceNewPage/ServiceNewPage';
-import FetchService from '../components/FetchService/FetchService';
-import FetchServiceToEdit from '../components/FetchServiceToEdit/FetchServiceToEdit';
+import ServicesPage from '../pages/Services/ServicesPage/ServicesPage';
+import ServiceNewPage from '../pages/Services/ServiceNewPage/ServiceNewPage';
+import FetchService from '../components/Services/FetchService/FetchService';
+import FetchServiceToEdit from '../components/Services/FetchServiceToEdit/FetchServiceToEdit';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 

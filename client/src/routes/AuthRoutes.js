@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Switch, Route} from 'react-router-dom';
 
-import LoginPage from '../pages/LoginPage/LoginPage';
-import SignupPage from '../pages/SignupPage/SignupPage';
-import ForgotPasswordPage from '../pages/ForgotPasswordPage/ForgotPasswordPage';
+import LoginPage from '../pages/Auth/LoginPage/LoginPage';
+import SignupPage from '../pages/Auth/SignupPage/SignupPage';
+import ForgotPasswordPage from '../pages/Auth/ForgotPasswordPage/ForgotPasswordPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
  

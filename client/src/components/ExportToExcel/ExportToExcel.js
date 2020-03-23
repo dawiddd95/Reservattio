@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 
-import ClientsExportToExcel from '../ClientsExportToExcel/ClientsExportToExcel';
+import ClientsExportToExcel from '../Clients/ClientsExportToExcel/ClientsExportToExcel';
 
 const ExportToExcel = ({entity}) => {
    const {clients} = useSelector(state => state.clientsReducer)

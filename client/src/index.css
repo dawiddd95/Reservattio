@@ -27,20 +27,19 @@ html, body {
   background: transparent;
 }
 
-
 @font-face {
-   font-family: 'nobel';
-   src: url('./assets/fonts/nobel.otf');
+  font-family: 'nobel';
+  src: url('./assets/fonts/nobel.otf');
 }
 
 @font-face {
-   font-family: 'segoeBold';
-   src: url('./assets/fonts/segoeBold.ttf');
+  font-family: 'segoeBold';
+  src: url('./assets/fonts/segoeBold.ttf');
 }
 
 @font-face {
-   font-family: 'segoe';
-   src: url('./assets/fonts/segoe-ui.ttf');
+  font-family: 'segoe';
+  src: url('./assets/fonts/segoe-ui.ttf');
 }
 
 ::-webkit-scrollbar-track {
