@@ -1,0 +1,14 @@
+{
+   "name": "auth_app",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+     "start": "cd server && npm start\" \"cd client && npm start\""
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "dependencies": {}
+ }
+ 
