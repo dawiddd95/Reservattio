@@ -35,6 +35,7 @@ import editEmployeeRoute from './routes/employees/editEmployee'
 dotenv.config();   
 
 const app = express()
+const PORT = process.env.PORT || 5000;
 app.use(cookieParser())
 app.use(cors())
 app.use(bodyParser.json())
@@ -68,4 +69,4 @@ app.use(searchEmployeeRoute)
 app.use(changePasswordEmployeeRoute)
 app.use(editEmployeeRoute)
 
-app.listen(5000, () => console.log('Now browse to localhost:5000'))
+app.listen(PORT, () => console.log('Now browse to localhost:5000'))
