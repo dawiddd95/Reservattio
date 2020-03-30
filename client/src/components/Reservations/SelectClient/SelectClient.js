@@ -32,7 +32,7 @@ const SelectClient = ({name}) => {
          >
             {clients.map(client =>
                <Option value={client.id} key={client.id}>
-                  {client.name} {client.surname} [{client.phone}]
+                  {client.name} {client.surname} &lt;{client.phone}&gt;
                </Option>
             )}     
          </Select>

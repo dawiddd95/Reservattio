@@ -33,7 +33,7 @@ const SelectEmployee = ({name}) => {
          >
             {employees.map(employee =>
                <Option value={employee.id} key={employee.id}>
-                  {employee.name} {employee.surname}
+                  {employee.name} {employee.surname} &lt;{employee.email}&gt;
                </Option>
             )}     
          </Select>
