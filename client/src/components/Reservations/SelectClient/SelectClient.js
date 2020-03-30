@@ -1,6 +1,8 @@
 import React from 'react';
 import { Select } from 'formik-antd';
 import { useSelector } from 'react-redux';
+import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 import * as S from './StyledSelectClient';
 
@@ -14,6 +16,9 @@ const SelectClient = ({name}) => {
       <S.FieldWrapper>
          <S.Label>
             Client:
+            <Button type='link'>
+               <Link to='/user/clients/new'>{clients.length === 0 && 'Click here to add first client'}</Link>
+            </Button>
          </S.Label>
          <Select 
             name={name}

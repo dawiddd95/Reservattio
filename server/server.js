@@ -3,7 +3,6 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
-import path from 'path'
 
 import createAccountRoute from './routes/auth/createAccount'
 import loginManagerRoute from './routes/auth/loginManager'
@@ -36,12 +35,10 @@ import editEmployeeRoute from './routes/employees/editEmployee'
 dotenv.config();   
 
 const app = express()
-app.use(express.static(path.join(__dirname, 'build')));
 app.use(cookieParser())
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
-
 
 app.use(createAccountRoute)
 app.use(loginManagerRoute)

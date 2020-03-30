@@ -1,6 +1,9 @@
 import React from 'react';
 import { Select } from 'formik-antd';
 import { useSelector } from 'react-redux';
+import { Button } from 'antd';
+import { Link } from 'react-router-dom';
+
 
 import * as S from './StyledSelectEmployee';
 
@@ -14,6 +17,9 @@ const SelectEmployee = ({name}) => {
       <S.FieldWrapper>
          <S.Label>
             Employee:
+            <Button type='link'>
+               <Link to='/user/employees/new'>{employees.length === 0 && 'Click here to add first employee'}</Link>
+            </Button>
          </S.Label>
          <Select 
             name={name}

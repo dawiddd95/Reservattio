@@ -1,6 +1,8 @@
 import React from 'react';
 import { Select } from 'formik-antd';
 import { useSelector } from 'react-redux';
+import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 import * as S from './StyledSelectService';
 
@@ -14,6 +16,9 @@ const SelectService = ({name}) => {
       <S.FieldWrapper>
          <S.Label>
             Service:
+            <Button type='link'>
+               <Link to='/user/services/new'>{services.length === 0 && 'Click here to add first service'}</Link>
+            </Button>
          </S.Label>
          <Select 
             name={name}

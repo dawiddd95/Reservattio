@@ -31,28 +31,28 @@ module.exports = {
       accountId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Account', 
+          model: 'Accounts', 
           key: 'id'
         }
       },
       employeeId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Employee', 
+          model: 'Employees', 
           key: 'id'
         }
       },
       serviceId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Service', 
+          model: 'Services', 
           key: 'id'
         }
       },
       clientId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Client', 
+          model: 'Clients', 
           key: 'id'
         }
       },

@@ -40,7 +40,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-<<<<<<< HEAD
   "browserslist": [
     "last 1 version",
     "> 1%",
@@ -48,18 +47,4 @@
     "not dead"
   ],
   "proxy": "http://localhost:5000"
-=======
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
->>>>>>> 06d0d053d694d0dd613558dcc2f2bdb469bc6cc9
 }
