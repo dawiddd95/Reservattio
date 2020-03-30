@@ -9,7 +9,7 @@ const Navigation = () => {
    const iconStyle = {'fontSize': '18px'}
 
    return (  
-      <S.StyledMenu theme="light" mode="inline" >
+      <S.StyledMenu theme="light" mode="inline" selectedKeys={''}>
          <Menu.Item key="1" className='menu-item'>
             <Link to='/user/employees'>
                <UserOutlined style={iconStyle} />

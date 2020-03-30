@@ -16,9 +16,11 @@ const SelectService = ({name}) => {
       <S.FieldWrapper>
          <S.Label>
             Service:
-            <Button type='link'>
-               <Link to='/user/services/new'>{services.length === 0 && 'Click here to add first service'}</Link>
-            </Button>
+            {services.length === 0 &&
+               <Button type='link'>
+                  <Link to='/user/services/new'>Click here to add first service</Link>
+               </Button>
+            }
          </S.Label>
          <Select 
             name={name}

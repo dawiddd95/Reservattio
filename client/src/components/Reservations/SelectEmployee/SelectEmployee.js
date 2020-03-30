@@ -17,9 +17,11 @@ const SelectEmployee = ({name}) => {
       <S.FieldWrapper>
          <S.Label>
             Employee:
-            <Button type='link'>
-               <Link to='/user/employees/new'>{employees.length === 0 && 'Click here to add first employee'}</Link>
-            </Button>
+            {employees.length === 0 &&
+               <Button type='link'>
+                  <Link to='/user/employees/new'>Click here to add first employee</Link>
+               </Button>
+            }
          </S.Label>
          <Select 
             name={name}

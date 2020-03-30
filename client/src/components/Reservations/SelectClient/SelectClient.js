@@ -16,9 +16,11 @@ const SelectClient = ({name}) => {
       <S.FieldWrapper>
          <S.Label>
             Client:
-            <Button type='link'>
-               <Link to='/user/clients/new'>{clients.length === 0 && 'Click here to add first client'}</Link>
-            </Button>
+            {clients.length === 0 &&
+               <Button type='link'>
+                  <Link to='/user/clients/new'>Click here to add first client</Link>
+               </Button>
+            }
          </S.Label>
          <Select 
             name={name}
