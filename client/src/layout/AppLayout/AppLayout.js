@@ -6,6 +6,7 @@ import * as S from './StyledAppLayout'
 
 import Navigation from '../../components/Navigation/Navigation';
 import AppRoutes from '../../routes/AppRoutes';
+import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
 
 
 const useLayout = () => {
@@ -40,7 +41,7 @@ const AppLayout = () => {
                   ? <MenuUnfoldOutlined className='trigger' onClick={collapseMenuToggle}/> 
                   : <MenuFoldOutlined className='trigger' onClick={collapseMenuToggle}/>
                }
-               {/* Tutaj dac komponent tego dropdown */}
+               <DropdownMenu />
             </S.StyledHeader>
             <AppRoutes />
          </Layout>

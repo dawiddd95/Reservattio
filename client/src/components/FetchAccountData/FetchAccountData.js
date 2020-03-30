@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {useDispatch} from 'react-redux';
 
+import {fetchedAccountThunk} from '../../app/account/thunks';
 import {fetchedServicesThunk} from '../../app/services/thunks';
 import {fetchedClientsThunk} from '../../app/clients/thunks';
 import {fetchedEmployeesThunk} from '../../app/employees/thunks';
@@ -21,9 +22,10 @@ const useFetch = () => {
 
       const fetchData = async () => {
          const account = await axios.get('/api/account/logged-account');
-         const {fetched} = account.data
+         const {fetched, user} = account.data
 
-         if(fetched) {
+         if(fetched && user) {
+            dispatch(fetchedAccountThunk(user))
             dispatch(fetchedReservationsThunk(fetched[0].Reservations))
             dispatch(fetchedEmployeesThunk(fetched[0].Employees))
             dispatch(fetchedClientsThunk(fetched[0].Clients))
