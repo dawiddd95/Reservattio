@@ -1,6 +1,5 @@
 import express from 'express';
 import jwtDecode from 'jwt-decode';
-import Sequelize from 'sequelize';
 
 import models from '../../db/models';
 import checkToken from '../../services/checkToken';
@@ -11,7 +10,8 @@ const router = express.Router();
 router.get('/api/account/logged-account', checkToken, async (req, res) => {
    const {token} = req.cookies;
    const decodedToken = jwtDecode(token);
-   const {id} = decodedToken;
+
+   const {id, name, surname, email, roles} = decodedToken;
 
    const account = await models.Account.findAll({
       include: [
@@ -23,7 +23,7 @@ router.get('/api/account/logged-account', checkToken, async (req, res) => {
       where: {id}
    })
    
-   res.json({fetched: account})
+   res.json({fetched: account, user: {name, surname, email, roles}})
 })
 
 
