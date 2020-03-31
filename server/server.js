@@ -4,9 +4,12 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 
+import {checkRole} from './services/checkRole'
+
 import createAccountRoute from './routes/auth/createAccount'
 import editAccountRoute from './routes/account/editAccount'
 import loginManagerRoute from './routes/auth/loginManager'
+import loginEmployeeRoute from './routes/auth/loginEmployee'
 import forgotPasswordRoute from './routes/auth/forgotPassword'
 import resetPasswordRoute from './routes/auth/resetPassword'
 import loggedAccountRoute from './routes/account/loggedAccount'
@@ -40,10 +43,12 @@ app.use(cookieParser())
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
+app.use(checkRole)
 
 app.use(createAccountRoute)
 app.use(editAccountRoute)
 app.use(loginManagerRoute)
+app.use(loginEmployeeRoute)
 app.use(forgotPasswordRoute)
 app.use(resetPasswordRoute)
 app.use(loggedAccountRoute)

@@ -1,63 +1,92 @@
 import React from 'react';
+import axios from 'axios';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { Form, SubmitButton } from 'formik-antd';
+import {Redirect} from 'react-router-dom';
+import { Form, Checkbox, SubmitButton } from 'formik-antd';
+
 import * as S from './StyledEmployeeLoginForm'
 
+import FormAlert from '../../FormAlert/FormAlert';
+import FormInput from '../../FormInput/FormInput';
+
+
+const useForm = () => {
+   const [loading, setLoading] = React.useState(false)
+   const [result, setResult] = React.useState({})
+
+   const submitForm = async values => {
+      setLoading(true)
+      
+      const response = await axios.post('/api/auth/login-employee', values)
+      const {remember, email} = values
+      const {success} = response.data
+
+      if(remember) localStorage.setItem('employee', email)
+      if(success) sessionStorage.setItem('session', true)
+
+      setLoading(false)
+      setResult(response.data)
+   }
+
+   return [loading, result, submitForm]
+}
+
+
 const EmployeeLoginForm = () => {
+   const [loading, result, submitForm] = useForm();
+
    return (  
-      <Formik
-         initialValues={{
-            username: '',
-            password: ''
-         }}
-         validationSchema={Yup.object().shape({
-            username: Yup
-               .string()
-               .required('Email is required'),
-            password: Yup
-               .string()
-               .required('Password is required'),
-         })}
-         onSubmit={values => {
-            //handleOnSubmit(values)
-            console.log(values)
-         }}     
-      >
-         {({handleSubmit}) => (
-            <S.Wrapper>
+      <S.Wrapper>
+         {result.success && <Redirect to='/user/reservations' />}
+         <FormAlert
+            result={result}
+         />
+         <Formik
+            initialValues={{
+               email: localStorage.getItem('employee') || '',
+               password: '',
+               remember: false
+            }}
+            validationSchema={Yup.object().shape({
+               email: Yup
+                  .string()
+                  .email()
+                  .required('Email is required'),
+               password: Yup
+                  .string()
+                  .required('Password is required'),
+            })}
+            onSubmit={values => {
+               submitForm(values)
+            }}     
+         >
+            {({handleSubmit}) => (
                <Form onSubmit={handleSubmit}>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='username' 
-                        type='text' 
-                        placeholder='Username' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='username' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='password' 
-                        type='password' 
-                        placeholder='Password' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='password' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
+                  <FormInput 
+                     label='Email'
+                     name='email'
+                     type='text'
+                     long='true'
+                  />
+                  <FormInput 
+                     label='Password'
+                     name='password'
+                     type='password'
+                     long='true'
+                  />
+                  <S.CheckboxWrapper>
+                     <Checkbox name='remember'>Remember me</Checkbox>
+                  </S.CheckboxWrapper>
                   <S.SubmitButtonWrapper>
-                     <SubmitButton block>
+                     <SubmitButton block loading={loading}>
                         Log in
                      </SubmitButton>
                   </S.SubmitButtonWrapper>
                </Form>
-            </S.Wrapper>
-         )}
-      </Formik>
+            )}
+         </Formik>
+      </S.Wrapper>
    );
 }
  
