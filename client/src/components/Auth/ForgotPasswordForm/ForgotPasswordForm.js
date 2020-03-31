@@ -1,12 +1,13 @@
 import React from 'react';
 import {Formik} from 'formik';
-import { Form, SubmitButton } from 'formik-antd'
+import { Form } from 'formik-antd'
 import * as Yup from 'yup';
 
 import {useAuthForm} from '../../../hooks/useAuthForm';
 import * as S from './StyledForgotPasswordForm';
 
 import FormAlert from '../../FormAlert/FormAlert';
+import FormInput from '../../FormInput/FormInput';
 
 
 const ForgotPasswordForm = () => {
@@ -33,20 +34,15 @@ const ForgotPasswordForm = () => {
          >
             {({handleSubmit}) => (
                <Form onSubmit={handleSubmit}>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='email' 
-                        type='text' 
-                        placeholder='Email' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='email' 
-                        component='div' 
-                     />
-                  </S.FieldWrapper>
-                  <SubmitButton block loading={loading}>
+                  <FormInput 
+                     label='Email'
+                     name='email'
+                     type='text'
+                     long='true'
+                  />
+                  <S.StyledSubmitButton block loading={loading}>
                      Send password reset email
-                  </SubmitButton>
+                  </S.StyledSubmitButton>
                </Form>
             )}
          </Formik>

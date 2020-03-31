@@ -8,7 +8,7 @@ import { Form, Checkbox, SubmitButton } from 'formik-antd';
 import * as S from './StyledManagerLoginForm';
 
 import FormAlert from '../../FormAlert/FormAlert';
-
+import FormInput from '../../FormInput/FormInput';
 
 const useForm = () => {
    const [loading, setLoading] = React.useState(false)
@@ -63,28 +63,18 @@ const ManagerLoginForm = () => {
          >
             {({handleSubmit}) => (
                <Form onSubmit={handleSubmit}>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='email' 
-                        type='text' 
-                        placeholder='Email' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='email' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='password' 
-                        type='password' 
-                        placeholder='Password' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='password' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
+                  <FormInput 
+                     label='Email'
+                     name='email'
+                     type='text'
+                     long='true'
+                  />
+                  <FormInput 
+                     label='Password'
+                     name='password'
+                     type='password'
+                     long='true'
+                  />
                   <S.CheckboxWrapper>
                      <Checkbox name='remember'>Remember me</Checkbox>
                      <S.StyledLink to='/auth/forgot-password'>

@@ -30,9 +30,9 @@ export const Content = styled.div`
 `
 
 export const StyledLink = styled(Link)`
-   margin: 20px auto 0 auto;
+   margin: 0 auto;
    color: ${colors.primary};
-   font-size: 16px;
+   font-size: 14px;
    font-family: segoe;
    text-decoration: none;
    transition: .3s;

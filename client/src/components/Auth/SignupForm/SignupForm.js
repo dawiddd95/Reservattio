@@ -1,11 +1,12 @@
 import React from 'react';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { Form, SubmitButton } from 'formik-antd';
+import { Form } from 'formik-antd';
 
 import * as S from './StyledSignupForm';
 import {useAuthForm} from '../../../hooks/useAuthForm';
 
+import FormInput from '../../FormInput/FormInput';
 import FormAlert from '../../FormAlert/FormAlert';
 
 
@@ -56,64 +57,39 @@ const SignupForm = () => {
          >
             {({handleSubmit}) => (
                <Form onSubmit={handleSubmit}>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='name' 
-                        type='text' 
-                        placeholder='Name' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='name' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='surname' 
-                        type='text' 
-                        placeholder='Surname' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='surname' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='email' 
-                        type='text' 
-                        placeholder='Email' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='email' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='password' 
-                        type='password' 
-                        placeholder='Password' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='password' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>
-                  <S.FieldWrapper>
-                     <S.StyledInput 
-                        name='confirmPassword' 
-                        type='password' 
-                        placeholder='Confirm password' 
-                     />
-                     <S.StyledErrorMessage 
-                        name='confirmPassword' 
-                        component='p' 
-                     />
-                  </S.FieldWrapper>        
-                  <SubmitButton block loading={loading}>
+                  <FormInput 
+                     label='Name'
+                     name='name'
+                     type='text'
+                     long='true'
+                  />
+                  <FormInput 
+                     label='Surname'
+                     name='surname'
+                     type='text'
+                     long='true'
+                  />
+                  <FormInput 
+                     label='Email'
+                     name='email'
+                     type='text'
+                     long='true'
+                  />
+                  <FormInput 
+                     label='Password'
+                     name='password'
+                     type='password'
+                     long='true'
+                  />
+                  <FormInput 
+                     label='Confirm password'
+                     name='confirmPassword'
+                     type='password'
+                     long='true'
+                  />
+                  <S.StyledSubmitButton block loading={loading}>
                      Sign up
-                  </SubmitButton>
+                  </S.StyledSubmitButton>
                </Form>
             )}
          </Formik>
