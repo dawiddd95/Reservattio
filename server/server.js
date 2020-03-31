@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 
 import createAccountRoute from './routes/auth/createAccount'
+import editAccountRoute from './routes/account/editAccount'
 import loginManagerRoute from './routes/auth/loginManager'
 import forgotPasswordRoute from './routes/auth/forgotPassword'
 import resetPasswordRoute from './routes/auth/resetPassword'
@@ -41,6 +42,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
 app.use(createAccountRoute)
+app.use(editAccountRoute)
 app.use(loginManagerRoute)
 app.use(forgotPasswordRoute)
 app.use(resetPasswordRoute)

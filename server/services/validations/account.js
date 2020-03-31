@@ -26,3 +26,20 @@ export const accountValidation = [
       .escape()
       .custom((value, {req}) => (value === req.body.password)),   
 ]
+
+export const editAccountValidation = [
+   check('name')
+      .not().isEmpty()
+      .isLength({min: 3})
+      .withMessage('Minimum 3 characters')
+      .escape(),
+   check('surname')
+      .not().isEmpty()
+      .isLength({min: 3})
+      .withMessage('Minimum 3 characters')
+      .escape(),
+   check('email', 'Must be correct email format')
+      .not().isEmpty()
+      .isEmail().normalizeEmail()
+      .escape()
+]

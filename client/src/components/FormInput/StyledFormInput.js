@@ -3,7 +3,7 @@ import {ErrorMessage} from 'formik';
 import colors from '../../assets/colors';
 
 export const FieldWrapper = styled.div`
-   width: 48%;
+   width: ${({long_style}) => long_style ? '100%' : '48%'};
    height: 100%;
    margin-bottom: 8px;
 

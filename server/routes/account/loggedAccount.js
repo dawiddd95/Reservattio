@@ -23,7 +23,7 @@ router.get('/api/account/logged-account', checkToken, async (req, res) => {
       where: {id}
    })
    
-   res.json({fetched: account, user: {name, surname, email, roles}})
+   res.json({fetched: account, user: {id, name, surname, email, roles}})
 })
 
 

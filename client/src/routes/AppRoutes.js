@@ -5,6 +5,7 @@ import ReservationsRoutes from './ReservationsRoutes';
 import ClientsRoutes from './ClientsRoutes';
 import ServicesRoutes from './ServicesRoutes';
 import EmployeesRoutes from './EmployeesRoutes';
+import ProfileRoutes from './ProfileRoutes';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 
@@ -15,6 +16,7 @@ const AppRoutes = () => {
          <Route path='/user/clients' component={ClientsRoutes} />
          <Route path='/user/services' component={ServicesRoutes} />
          <Route path='/user/employees' component={EmployeesRoutes} />
+         <Route path='/user/profile' component={ProfileRoutes} />
          <Route component={ErrorPage} />
       </Switch>
    )

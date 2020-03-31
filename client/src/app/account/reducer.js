@@ -12,7 +12,7 @@ const accountReducer = (state = INITIAL_STATE, action) => {
             draftState.account = action.item
          })
 
-      case types.EDIT_EMPLOYEE:
+      case types.EDIT_ACCOUNT:
          return produce(state, draftState => {
             draftState.account = action.item
          })

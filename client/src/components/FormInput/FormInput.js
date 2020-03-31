@@ -3,9 +3,9 @@ import { Input } from 'formik-antd';
 
 import * as S from './StyledFormInput';
 
-const FormInput = ({label, name, type}) => {
+const FormInput = ({label, name, type, long = false}) => {
    return (  
-      <S.FieldWrapper>
+      <S.FieldWrapper long_style={long}>
          <S.Label>
             {label}:
          </S.Label>
