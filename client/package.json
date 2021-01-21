@@ -10,7 +10,7 @@
     "customize-cra": "^0.9.1",
     "formik": "^1.5.8",
     "formik-antd": "^1.9.0",
-    "immer": "^3.3.0",
+    "immer": "^8.0.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "query-string": "^6.11.1",
